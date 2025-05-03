@@ -1,14 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState } from "react";
-import logo from "@/assets/logo/logo.gif";
+import logo from "@/assets/logo/Logo.png";
 import Image from "next/image";
 import ActiveLink from "./ActiveLink"; // Assuming this component works fine
 import Link from "next/link";
-import { Drawer, Button, Dropdown } from "antd";
+import { Button, Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
-// import { useRouter } from "next/navigation";
-import { IoSearchSharp } from "react-icons/io5";
-import { IoIosNotifications } from "react-icons/io";
+import { LuShoppingCart } from "react-icons/lu";
+import { MdOutlineNotificationsNone } from "react-icons/md";
 
 const navLink = [
   {
@@ -16,162 +16,101 @@ const navLink = [
     label: "Home",
   },
   {
-    href: "/about-us",  // Ensure the href includes the full path
-    label: "About us",
+    href: "/Auctions",
+    label: "Auctions",
   },
   {
-    href: "/contact-us",  // Ensure the href includes the full path
-    label: "Contact us",
+    href: "/about-us",
+    label: "About",
+  },
+  {
+    href: "/contact-us",
+    label: "Contact",
+  },
+  {
+    href: "/SellerPortal",
+    label: "Seller portal",
   },
 ];
 
 const Navbar = () => {
-  // const router = useRouter();
-  const user = {
-    name: "John Doe",
-    avatar: "/avatar.jpg", // Replace with actual avatar URL
-    email: "john.doe@example.com",
-  };
-
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   const showDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
 
-  const menuItems = [
-    {
-      key: "3",
-      label: <div className="cursor-pointer px-4 py-1">Logout</div>,
-    },
-  ];
-
   return (
     <nav>
-      <div className="lg:container flex justify-between items-center bg-[#FBE9E9] py-2 px-3 ">
-
-        {/* logo */}
+      <div className="lg:container flex justify-between items-center py-2 px-3">
+        {/* Logo */}
         <Link href="/">
           <Image
             src={logo}
             width={100}
             height={100}
             alt="logo"
-            className="rounded-md lg:mr-20"
+            className="rounded-md lg:mr-20 w-[44px] h-[44px]  md:w-[64px] md:h-[64px]"
           />
         </Link>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex gap-1">
+        <ul className="hidden md:flex gap-4">
           {navLink.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="text-[18px]">
               <ActiveLink href={link.href} label={link.label} />
             </li>
           ))}
         </ul>
 
-        {/* Create job button */}
-        {user ? (
-          <div className="flex justify-between items-center mg:gap-4 lg:gap-8 gap-2">
+        {/* Desktop Action Buttons */}
+        <div className="flex justify-between items-center lg:gap-8 gap-4">
+          {/* Search Button */}
+          <Link href="#">
+            <h1 className="bg-[#E5F6FD] p-[10px] rounded-full text-[#48B1DB]">
+              <LuShoppingCart size={30} />
+            </h1>
+          </Link>
 
-            {/* Create Job Button */}
-            <Link href="/jobpost">
-              <Button className="rounded-[4px] md:px-6 px-2 md:py-5 py-2 bg-[#DB2424] text-white border-none hover:bg-[#b61f1f]">
-               Job History
-              </Button>
-            </Link>
+          {/* Notifications */}
+          <Link href="#">
+            <h1 className="bg-[#E5F6FD] p-[10px] rounded-full text-[#48B1DB]">
+              <MdOutlineNotificationsNone size={30} />
+            </h1>
+          </Link>
 
-            {/* Search Button */}
-            <Link href="#">
-              <h1 className="bg-[#F4BBBB] md:p-[10px] p-[4px] rounded-full text-red-400">
-                <IoSearchSharp size={30} />
-              </h1>
-            </Link>
+          {/* Login Button */}
+          <Link href="/login" className="w-full">
+            <Button className="bg-[#48B1DB] p-[20px] text-white text-[18px]">
+              Login
+            </Button>
+          </Link>
+        </div>
 
-            {/* Notifications Button */}
-            <Link href="#">
-              <h1 className="bg-[#F4BBBB] md:p-[10px] p-[4px] rounded-full text-red-400">
-                <IoIosNotifications size={30} />
-              </h1>
-            </Link>
-
-            {/* User Avatar Dropdown */}
-            <Dropdown
-              menu={{ items: menuItems }}
-              placement="top"
-              arrow
-            >
-              {user?.avatar && (
-                <Image
-                  width={48}
-                  height={48}
-                  src={user.avatar}
-                  alt="User Image"
-                  className="rounded-full cursor-pointer ring ring-[#F4BBBB]"
-                />
-              )}
-            </Dropdown>
-          </div>
-        ) : (
-          <div>
-            <Link href="/login" className="w-full">
-              <Button>Login</Button>
-            </Link>
-          </div>
-        )}
-
-        {/* Mobile Drawer Button */}
+        {/* Mobile Hamburger Button */}
         <Button
           type="text"
-          className="md:hidden"
-          icon={<MenuOutlined />}
+          size="large"
+          className="md:hidden "
+          icon={<MenuOutlined  />}
           onClick={showDrawer}
         />
-
-        {/* Drawer for Mobile Navigation */}
-        <Drawer
-          title="Menu"
-          placement="right"
-          onClose={closeDrawer}
-          open={isDrawerOpen}
-        >
-          <ul className="flex flex-col gap-4">
-            {navLink.map((link) => (
-              <li key={link.href}>
-                <ActiveLink href={link.href} label={link.label} />
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-col gap-4 mt-4">
-            {user.name ? (
-              <>
-                {/* <Link href="/profile">
-                  <button className="px-8 py-3 border border-red-500 text-red-500 rounded">
-                    Profile
-                  </button>
-                </Link> */}
-                <Link href="/logout">
-                  <button className="text-white bg-red-500 px-10 py-3 rounded">
-                    Logout
-                  </button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/login">
-                  <button className="text-white bg-red-500 hover:bg-red-500 px-10 py-3 rounded">
-                    Login
-                  </button>
-                </Link>
-                <Link href="/register">
-                  <button className="px-8 py-3 border border-red-500 text-red-500 rounded">
-                    Register
-                  </button>
-                </Link>
-              </>
-            )}
-          </div>
-        </Drawer>
       </div>
+
+      {/* Mobile Drawer with Links */}
+      <Drawer
+        placement="left"
+        closable={true}
+        onClose={closeDrawer}
+        visible={isDrawerOpen}
+        width={200}
+      >
+        <ul className="space-y-4 ">
+          {navLink.map((link) => (
+            <li key={link.href} className="text-[18px] " onClick={closeDrawer}>
+              <ActiveLink href={link.href} label={link.label} />
+            </li>
+          ))}
+        </ul>
+      </Drawer>
     </nav>
   );
 };
