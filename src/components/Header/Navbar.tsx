@@ -40,7 +40,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="lg:container flex justify-between items-center py-2 px-3">
+      <div className="bg-white lg:container flex justify-between items-center py-2 rounded-md px-3">
         {/* Logo */}
         <Link href="/">
           <Image
