@@ -22,7 +22,7 @@ const ProductCategories = () => {
   ];
 
   return (
-    <div className="relative w-full h-[100%] md:h-[600px]">
+    <div className="relative w-full h-full md:h-[1100px] lg:h-[600px] xl:h-[620px]">
       {/* Top text (above the image visually) */}
       <div className="z-10 md:container mx-auto  ">
         <h1 className="text-xl md:text-5xl font-bold mb-[50px] md:mb-[130px] px-3 md:px-0">
@@ -60,3 +60,4 @@ const ProductCategories = () => {
 };
 
 export default ProductCategories;
+
