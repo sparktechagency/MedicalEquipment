@@ -8,8 +8,7 @@ const HomePage = () => {
     <section>
       <HeroBannerSection />
       <br /><br /><br />
-      <ProductCategories />
-      <br /><br /><br />
+      <ProductCategories />    
     </section>
   );
 };

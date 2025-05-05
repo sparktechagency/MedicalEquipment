@@ -20,7 +20,7 @@ const ProductCategories = () => {
   ];
 
   return (
-    <div className="w-full relative h-[685px]">
+    <div className="relative w-full h-[685px]">
       {/* Top text (above the image visually) */}
       <div className="z-10 md:container mx-auto py-8 px-4 h-[685px]">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[40px]">
@@ -29,31 +29,28 @@ const ProductCategories = () => {
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             {icons.map((item, index) => (
-              <div key={index}>
-                <Image
-                  src={item.icon}
-                  alt={`Product category icon ${index + 1}`}
-                  width={100}
-                  height={100}
-                  layout="fill"
-                  objectFit="cover"
-                  className="w-full h-full md:w-[300px] md:h-[305px] object-cover"
-                />
-              </div>
+              <Image 
+                key={index}
+                src={item.icon}
+                alt={`Product category icon ${index + 1}`}
+                width={300}
+                height={305}
+                objectFit="contain"
+                className="object-cover"
+              />
             ))}
           </div>
         </div>
       </div>
 
       {/* Background image (behind text) */}
-      <div className="absolute inset-0 z-0 h-full">
+      <div className="absolute inset-0 z-0">
         <Image
           src={ProductCategoriesImage}
           alt="Product Categories Background Banner"
           layout="fill"
           objectFit="cover"
-          className="opacity-10 md:px-40 h-full -mr-80 md:pr-10"
-          priority
+          className="opacity-10 md:px-40 w-full h-full"
         />
       </div>
     </div>
@@ -61,3 +58,4 @@ const ProductCategories = () => {
 };
 
 export default ProductCategories;
+

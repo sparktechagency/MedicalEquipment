@@ -1,60 +1,118 @@
-// "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+import { useState } from "react";
+import logo from "@/assets/logo/Logo.png";
 import Image from "next/image";
-import ProductCategoriesImage from "@/assets/banner/ProductCategories.png";
+import ActiveLink from "./ActiveLink"; // Assuming this component works fine
+import Link from "next/link";
+import { Button, Drawer } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
+import { LuShoppingCart } from "react-icons/lu";
+import { MdOutlineNotificationsNone } from "react-icons/md";
 
-// Import icons for the product categories
-import icon1 from "@/assets/ProductCategories/Frame7.png";
-import icon2 from "@/assets/ProductCategories/Frame9.png";
-import icon3 from "@/assets/ProductCategories/Frame11.png";
-import icon4 from "@/assets/ProductCategories/Frame13.png";
-import icon5 from "@/assets/ProductCategories/Frame14.png";
+const navLink = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/Auctions",
+    label: "Auctions",
+  },
+  {
+    href: "/about-us",
+    label: "About",
+  },
+  {
+    href: "/contact-us",
+    label: "Contact",
+  },
+  {
+    href: "/SellerPortal",
+    label: "Seller portal",
+  },
+];
 
-const ProductCategories = () => {
-  // Icons array with imported images
-  const icons = [
-    { icon: icon1 },
-    { icon: icon2 },
-    { icon: icon3 },
-    { icon: icon4 },
-    { icon: icon5 },
-  ];
+const Navbar = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const showDrawer = () => setIsDrawerOpen(true);
+  const closeDrawer = () => setIsDrawerOpen(false);
 
   return (
-    <div className="w-full relative h-[685px]">
-      {/* Top text (above the image visually) */}
-      <div className="z-10 md:container mx-auto py-8 px-4 h-[685px]">
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[40px]">
-          Product <span className="text-[#48B1DB] font-bold">Categories</span>
-        </h1>
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            {icons.map((item, index) => (
-              <div key={index}>
-                <Image
-                  src={item.icon}
-                  alt={`Product category icon ${index + 1}`}
-                  width={100}
-                  height={100}
-                  className="w-full h-full md:w-[300px] md:h-[305px] object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <nav>
+      <div className="bg-white lg:container flex justify-between items-center py-2 rounded-md px-3">
+        {/* Logo */}
+        <Link href="/">
+          <Image
+            src={logo}
+            width={100}
+            height={100}
+            alt="logo"
+            className="rounded-md lg:mr-20 w-[44px] h-[44px]  md:w-[64px] md:h-[64px]"
+          />
+        </Link>
 
-      {/* Background image (behind text) */}
-      <div className="absolute inset-0 z-0 h-full">
-        <Image
-          src={ProductCategoriesImage}
-          alt="Product Categories Background Banner"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-10 md:px-40 h-full -mr-80 md:pr-10"
+        {/* Desktop Navigation Links */}
+        <ul className="hidden md:flex gap-4">
+          {navLink.map((link) => (
+            <li key={link.href} className="text-[18px]">
+              <ActiveLink href={link.href} label={link.label} />
+            </li>
+          ))}
+        </ul>
+
+        {/* Desktop Action Buttons */}
+        <div className="flex justify-between items-center lg:gap-8 gap-4">
+          {/* Search Button */}
+          <Link href="#">
+            <h1 className="bg-[#E5F6FD] p-[10px] rounded-full text-[#48B1DB]">
+              <LuShoppingCart size={30} />
+            </h1>
+          </Link>
+
+          {/* Notifications */}
+          <Link href="#">
+            <h1 className="bg-[#E5F6FD] p-[10px] rounded-full text-[#48B1DB]">
+              <MdOutlineNotificationsNone size={30} />
+            </h1>
+          </Link>
+
+          {/* Login Button */}
+          <Link href="/login" className="w-full">
+            <Button className="bg-[#48B1DB] p-[20px] text-white text-[18px]">
+              Login
+            </Button>
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <Button
+          type="text"
+          size="large"
+          className="md:hidden "
+          icon={<MenuOutlined  />}
+          onClick={showDrawer}
         />
       </div>
-    </div>
+
+      {/* Mobile Drawer with Links */}
+      <Drawer
+        placement="left"
+        closable={true}
+        onClose={closeDrawer}
+        visible={isDrawerOpen}
+        width={200}
+      >
+        <ul className="space-y-4 ">
+          {navLink.map((link) => (
+            <li key={link.href} className="text-[18px] " onClick={closeDrawer}>
+              <ActiveLink href={link.href} label={link.label} />
+            </li>
+          ))}
+        </ul>
+      </Drawer>
+    </nav>
   );
 };
 
-export default ProductCategories;
+export default Navbar;
