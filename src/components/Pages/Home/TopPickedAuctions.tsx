@@ -8,131 +8,230 @@ const data = [
     name: "GE Vivid S70 Ultrasound Machine",
     location: "New York",
     price: "$200",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
     timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 2,
     name: "GE Vivid S70 Ultrasound Machine",
     location: "New York",
     price: "$200",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
     timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 3,
     name: "GE Vivid S70 Ultrasound Machine",
     location: "New York",
     price: "$200",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
     timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 4,
     name: "GE Vivid S70 Ultrasound Machine",
-    location: "Los Angeles",
-    price: "$250",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
-    timeRemaining: "1 day 12 hours 30 min",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 5,
     name: "GE Vivid S70 Ultrasound Machine",
-    location: "Chicago",
-    price: "$220",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
-    timeRemaining: "3 days 5 hours 15 min",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 6,
     name: "GE Vivid S70 Ultrasound Machine",
-    location: "San Francisco",
-    price: "$210",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
-    timeRemaining: "1 day 8 hours 50 min",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 7,
     name: "GE Vivid S70 Ultrasound Machine",
-    location: "Houston",
-    price: "$230",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
-    timeRemaining: "4 days 2 hours 20 min",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
   {
     id: 8,
     name: "GE Vivid S70 Ultrasound Machine",
-    location: "Dallas",
-    price: "$240",
-    imageUrl: "https://i.ibb.co/com/bjzn3zKW/Rectangle-3.png",
-    timeRemaining: "2 days 6 hours 10 min",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 9,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 10,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 11,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 12,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 13,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 14,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 15,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
+  },
+  {
+    id: 16,
+    name: "GE Vivid S70 Ultrasound Machine",
+    location: "New York",
+    price: "$200",
+    imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+    timeRemaining: "2 days 4 hours 5 min",
+    bids: "2 Bids",
   },
 ];
 
 const TopPickedAuctions = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerSlide = 8; // 4 items per slide (2 rows x 2 columns)
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % (data.length - 3)); // Wrap to start after last item
+    setCurrentIndex((prevIndex) =>
+      prevIndex + itemsPerSlide >= data.length ? 0 : prevIndex + itemsPerSlide
+    );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1
-    ); // Wrap to last if at first
+      prevIndex === 0 ? data.length - itemsPerSlide : prevIndex - itemsPerSlide
+    );
   };
+
+  // Group items into slides of 4
+  const slides = [];
+  for (let i = 0; i < data.length; i += itemsPerSlide) {
+    slides.push(data.slice(i, i + itemsPerSlide));
+  }
 
   return (
     <div className="w-full md:container mx-auto px-4">
-      <h2 className="text-xl md:text-[40px] font-bold text-gray-800 mb-4">
-        Top-Picked <span className="text-[#48B1DB] font-bold">Auctions</span>
-      </h2>
-
-      {/* Carousel for Top 4 Auctions */}
-      <div className="relative">
-        <div className="flex justify-between overflow-hidden space-x-4">
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-48 transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl md:text-[40px] font-bold text-gray-800">
+          Top-Picked <span className="text-[#48B1DB] font-bold">Auctions</span>
+        </h2>
+        <div className="flex space-x-2">
+          <button
+            onClick={prevSlide}
+            className="bg-[#EEF9FE] text-[#48B1DB] p-2 px-5 rounded-md"
           >
-            {data.slice(currentIndex, currentIndex + 2 ).map((item) => (
-              <div
-                key={item.id}
-                className="p-4 bg-white shadow-lg rounded-lg w-full"
-              >
-                <Image
-                  width={100}
-                  height={100}
-                  src={item.imageUrl}
-                  alt={item.name}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h3 className="font-semibold text-lg">{item.name}</h3>
-                <p className="text-gray-600">{item.location}</p>
-                <p className="text-xl text-blue-600">{item.price}</p>
-                <p className="text-sm text-gray-500">{item.timeRemaining}</p>
-              </div>
-            ))}
-          </div>
+            ❮
+          </button>
+          <button
+            onClick={nextSlide}
+            className="bg-[#EEF9FE] text-[#48B1DB] p-2 px-5 rounded-md"
+          >
+            ❯
+          </button>
         </div>
+      </div>
 
-        {/* Navigation Buttons for Carousel */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#EEF9FE] text-[#48B1DB] p-5 rounded-full"
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${(currentIndex / itemsPerSlide) * 100}%)`,
+          }}
         >
-          &#10094;
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#EEF9FE] text-[#48B1DB] p-5 rounded-full"
-        >
-          &#10095;
-        </button>
+          {slides.map((slide, slideIndex) => (
+            <div key={slideIndex} className="flex-none w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {slide.map((item) => (
+                  <div key={item.id} className="bg-gradient-to-b from-[#EEF9FE] to-white rounded-md p-2">
+                    <Image
+                      width={300}
+                      height={250}
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="w-full h-40 md:h-52  object-cover rounded-md p-1"
+                    />
+                    <div className="p-4">
+                      <h3 className="font-semibold text-lg">{item.name}</h3>
+                      <p className="text-gray-600">{item.location}</p>
+                      <div className="flex justify-between items-center">
+                        <p className="text-xl text-blue-600">{item.price}</p>
+                        <p className="text-sm text-gray-500">{item.bids}</p>
+                      </div>
+                      <p className="text-sm text-gray-500">
+                        {item.timeRemaining}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default TopPickedAuctions;
-
