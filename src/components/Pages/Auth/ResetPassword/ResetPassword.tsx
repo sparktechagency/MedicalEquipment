@@ -17,23 +17,23 @@ const ResetPassword: React.FC = () => {
   };
 
   return (
-    <section className=" w-[90%] mx-auto h-[90vh]  px-4 py-10 md:px-6 lg:px-10 bg-[#282828] my-10 rounded-md">
+    <section className=" w-[90%] mx-auto h-[90vh]  px-4 py-10 md:px-6 lg:px-10  my-10 rounded-md">
       <div className="w-full max-w-7xl mx-auto">
           {/* Reset Password Form Content */}
           <div className="w-full max-w-[450px] mx-auto px-4 md:px-0">
-            <div className="bg-[#5E5E5E] shadow-lg rounded-lg mt-32 border-[3px] border-white">
+            <div className="bg-[#BADAEB40] shadow-lg rounded-lg mt-32 ">
               <div className="px-6 py-8 md:px-8 lg:px-10">
-                <h2 className="text-xl md:text-2xl font-semibold text-white  text-center ">
+                <h2 className="text-xl md:text-2xl font-semibold   text-center ">
                 Reset Password
                 </h2>
-                <p className="text-center pb-3 text-white">Your password must be 8-10 character long.</p>
+                <p className="text-center pb-3 ">Your password must be 8-10 character long.</p>
                 <Form
                   layout="vertical"
                   onFinish={onFinish}
                   className="space-y-5"
                 >
                   <Form.Item
-                  label={<span className="text-white">Password</span>}
+                  label={<span className="">Password</span>}
                     name="password"
                     rules={[
                       {
@@ -53,7 +53,7 @@ const ResetPassword: React.FC = () => {
                     />
                   </Form.Item>
                   <Form.Item
-                  label={<span className="text-white">Confirm Password</span>}
+                  label={<span className="">Confirm Password</span>}
                     name="confirmPassword"
                     dependencies={["password"]}
                     rules={[
@@ -83,7 +83,7 @@ const ResetPassword: React.FC = () => {
                       className="w-full p-3 border-b border-gray-300 "
                     />
                   </Form.Item>
-                  <button className="w-full px-5 py-3 bg-[#DB2424] rounded text-white">
+                  <button className="w-full px-5 py-3 bg-[#48B1DB] rounded text-white">
                     Reset Password
                   </button>
                 </Form>

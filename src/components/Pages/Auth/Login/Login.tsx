@@ -27,12 +27,14 @@ const Login: React.FC = () => {
 
   return (
     <section className="w-[90%] mx-auto h-[90vh] px-4 py-10 md:px-6 lg:px-10 mt-10 rounded-md">
-
-      <div className="w-full h-full px-4 py-10 md:px-6 lg:px-10">
+      <h1 className="text-center text-[40px] font-bold"><span className="text-[#48B1DB] font-bold">Sign in</span> To Your Account</h1>
+      <p className="text-center pb-5">Welcome! Sign in to your account to continue.</p>
+      <div className="w-full h-full px-4  md:px-6 lg:px-10">
       <div className="w-full  mx-auto">
           {/* Form Content */}
           <div className="w-full md:max-w-[510px] mx-auto md:px-4 px-0">
-            <div className="bg-[#EEF9FE] shadow-lg rounded-lg border-[3px] border-white">
+            
+            <div className="bg-[#EEF9FE] shadow-lg rounded-lg ">
               <div className="px-6 py-3 md:py-5 md:px-8 lg:px-10">
                 <Image
                   src={imageLogo}

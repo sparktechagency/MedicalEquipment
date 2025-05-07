@@ -2,7 +2,7 @@ import BecomeSeller from "@/components/Pages/Home/BecomeSeller";
 import HeroBannerSection from "@/components/Pages/Home/HeroBannerSection";
 import ProductCategories from "@/components/Pages/Home/ProductCategories";
 import TopPickedAuctions from "@/components/Pages/Home/TopPickedAuctions";
-import TrustedbyProfessionalsWorldwide from "@/components/Pages/Home/TrustedbyProfessionalsWorldwide";
+import TrustedbyProfessionalsWorldwide from "@/components/Pages/coomon/TrustedbyProfessionalsWorldwide";
 import UpcomingAuctions from "@/components/Pages/Home/UpcomingAuctions";
 import React from "react";
 
