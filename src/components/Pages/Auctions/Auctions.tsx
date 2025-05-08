@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline"; // Using Heroicons for icons
+import Image from "next/image";
 
 const Auctions = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,6 +43,188 @@ const Auctions = () => {
     },
     {
       name: "Patient Monitoring",
+    },
+    {
+      name: "Therapeutic Devices",
+    },
+    {
+      name: "Laboratory Equipment",
+    },
+    {
+      name: "Medical Consumables",
+    },
+    {
+      name: "Rehabilitation Equipment",
+    },
+    {
+      name: "Anesthesia Equipment",
+    },
+    {
+      name: "Sterilization Equipment",
+    },
+  ];
+  
+
+  const data = [
+    {
+      id: 1,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Patient Monitoring"
+    },
+    {
+      id: 2,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Surgical Instruments"
+    },
+    {
+      id: 3,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Imaging Devices"
+    },
+    {
+      id: 4,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Imaging Devices"
+    },
+    {
+      id: 5,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Diagnostic Equipment"
+    },
+    {
+      id: 6,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Imaging Devices"
+    },
+    {
+      id: 7,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Diagnostic Equipment"
+    },
+    {
+      id: 8,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Diagnostic Equipment"
+    },
+    {
+      id: 9,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Patient Monitoring"
+    },
+    {
+      id: 10,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Patient Monitoring"
+    },
+    {
+      id: 11,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Surgical Instruments"
+    },
+    {
+      id: 12,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Surgical Instruments"
+    },
+    {
+      id: 13,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Surgical Instruments"
+    },
+    {
+      id: 14,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Surgical Instruments"
+    },
+    {
+      id: 15,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Imaging Devices"
+    },
+    {
+      id: 16,
+      name: "GE Vivid S70 Ultrasound Machine",
+      location: "New York",
+      price: "$200",
+      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
+      timeRemaining: "2 days 4 hours 5 min",
+      bids: "2 Bids",
+      Categories:"Imaging Devices"
     },
   ];
 
@@ -101,7 +284,7 @@ const Auctions = () => {
 
         {/* Main Content with Search */}
         <div className="w-full">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between px-2 md:px-0">
             {/* Mobile Hamburger Button */}
             <button className="md:hidden text-gray-500" onClick={showDrawer}>
               <MenuIcon className="h-6 w-6" />
@@ -125,7 +308,7 @@ const Auctions = () => {
             </form>
           </div>
           <div>
-            <div className="flex items-center justify-between p-2 md:p-4 border-b border-[#E5F6FD]">
+            <div className="flex items-center justify-between py-4 border-b border-[#E5F6FD] px-2 md:px-0">
               {/* Tabs */}
               <div className="flex space-x-4">
                 <button
@@ -151,12 +334,12 @@ const Auctions = () => {
               </div>
 
               {/* Sorting Option */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center  space-x-2">
                 {/* <span className="">20 results</span> */}
                 <select
                   value={sortOption}
                   onChange={handleSortChange}
-                  className="text-sm border border-blue-300 rounded-md px-1 py-2 focus:outline-none"
+                  className="text-sm border border-blue-300 rounded-md  py-2 focus:outline-none"
                 >
                   <option value="auction-time">Sort Action</option>
                   <option value="price-high-to-low">
@@ -169,6 +352,45 @@ const Auctions = () => {
               </div>
             </div>
           </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
+                {data.map((item:any) => (
+                  <div
+                    key={item.id}
+                    className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]"
+                  >
+                    <Image
+                      width={300}
+                      height={250}
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="w-full h-40 md:h-52 object-cover rounded-md p-1"
+                      onError={() =>
+                        console.log(`Failed to load image: ${item.imageUrl}`)
+                      }
+                    />
+                    <div className="p-4">
+                      <h3 className="font-semibold text-base md:text-lg truncate">
+                        {item.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm md:text-base">
+                        {item.location}
+                      </p>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-lg md:text-xl text-blue-600">
+                          {item.price}
+                        </p>
+                        <p className="text-xs md:text-sm text-gray-500">
+                          {item.bids}
+                        </p>
+                      </div>
+                      <p className="text-xs md:text-sm text-gray-500 mt-1">
+                        {item.timeRemaining}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+           
         </div>
       </div>
     </section>
