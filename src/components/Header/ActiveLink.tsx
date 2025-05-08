@@ -17,7 +17,7 @@ const ActiveLink = ({ label, href }: IActiveProps) => {
   return (
     <Link
       href={href}
-      className={`text-[17px] mx-5 ${isActive ? "text-[#48B1DB] border-b-[2px] border-[#48B1DB]" : "text-black"}`}
+      className={`text-[17px] md:mx-1 lg:mx-5 ${isActive ? "text-[#48B1DB] border-b-[2px] border-[#48B1DB]" : "text-black"}`}
     >
       {label}
     </Link>

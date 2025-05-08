@@ -1,8 +1,11 @@
 
+import Auctions from '@/components/Pages/Auctions/Auctions';
 import React from 'react';
 const  page = () => {
     return (
-        <div> manik </div>
+        <div>             
+            <Auctions />    
+        </div>
     )
 }
 

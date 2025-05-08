@@ -48,7 +48,7 @@ const Navbar = () => {
             width={100}
             height={100}
             alt="logo"
-            className="rounded-md lg:mr-20 w-[44px] h-[44px]  md:w-[64px] md:h-[64px]"
+            className="rounded-md lg:mr-20 w-[34px] h-[44px]  md:w-[64px] md:h-[64px]"
           />
         </Link>
 
@@ -62,24 +62,24 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Action Buttons */}
-        <div className="flex justify-between items-center lg:gap-8 gap-4">
+        <div className="flex justify-between items-center lg:gap-8 md:gap-4 gap-3">
           {/* Search Button */}
           <Link href="#">
-            <h1 className="bg-[#E5F6FD] p-[10px] rounded-full text-[#48B1DB]">
+            <h1 className="bg-[#E5F6FD] p-[7px] md:p-[10px] rounded-full text-[#48B1DB]">
               <LuShoppingCart size={30} />
             </h1>
           </Link>
 
           {/* Notifications */}
           <Link href="#">
-            <h1 className="bg-[#E5F6FD] p-[10px] rounded-full text-[#48B1DB]">
+            <h1 className="bg-[#E5F6FD] p-[7px] md:p-[10px] rounded-full text-[#48B1DB]">
               <MdOutlineNotificationsNone size={30} />
             </h1>
           </Link>
 
           {/* Login Button */}
           <Link href="/login" className="w-full">
-            <Button className="bg-[#48B1DB] p-[20px] text-white text-[18px]">
+            <Button className="bg-[#48B1DB] p-[10px] md:p-[20px] text-white text-[18px]">
               Login
             </Button>
           </Link>
