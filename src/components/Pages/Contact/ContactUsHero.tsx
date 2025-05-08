@@ -1,4 +1,4 @@
-import { div } from "framer-motion/client"
+/* eslint-disable react/no-unescaped-entities */
 
 const  ContactUsHero = () => {
     return(

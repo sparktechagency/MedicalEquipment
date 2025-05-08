@@ -35,7 +35,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/why-choose-us" className="hover:text-gray-600">
+                  <Link href="#" className="hover:text-gray-600">
                     Why Choose Us
                   </Link>
                 </li>
@@ -53,7 +53,7 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li>
                   <Link
-                    href="/terms-of-service"
+                    href="/terms-condition"
                     className="hover:text-gray-600"
                   >
                     Terms of Service
