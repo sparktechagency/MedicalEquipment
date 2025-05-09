@@ -5,6 +5,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline"; // Using Heroicons f
 import Image from "next/image";
 import PaginationComponent from "@/components/UI/PaginationComponent"; // Import the Pagination component
 import Link from "next/link";
+import { AuctionItem } from "@/types/types";
 
 const Auctions = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,16 +23,16 @@ const Auctions = () => {
   };
 
   const categories = [
-    { name: "Diagnostic Equipment" },
-    { name: "Imaging Devices" },
-    { name: "Surgical Instruments" },
-    { name: "Patient Monitoring" },
-    { name: "Therapeutic Devices" },
-    { name: "Laboratory Equipment" },
-    { name: "Medical Consumables" },
-    { name: "Rehabilitation Equipment" },
-    { name: "Anesthesia Equipment" },
-    { name: "Sterilization Equipment" },
+    { id: 1, name: "Diagnostic Equipment" },
+    { id: 2, name: "Imaging Devices" },
+    { id: 3, name: "Surgical Instruments" },
+    { id: 4, name: "Patient Monitoring" },
+    { id: 5, name: "Therapeutic Devices" },
+    { id: 6, name: "Laboratory Equipment" },
+    { id: 7, name: "Medical Consumables" },
+    { id: 8, name: "Rehabilitation Equipment" },
+    { id: 9, name: "Anesthesia Equipment" },
+    { id: 10, name: "Sterilization Equipment" },
   ];
 
   const data = [
@@ -238,11 +239,15 @@ const Auctions = () => {
     currentPage * itemsPerPage
   );
 
-  function showDrawer(event: any) {
+  function showDrawer() {
     setIsSidebarOpen(true);
   }
 
-  function handleSearch(event: any) {
+  function closeDrawer() {
+      setIsSidebarOpen(false);
+    }
+
+  function handleSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     // Reset to the first page when a new search is performed
     setCurrentPage(1);
@@ -284,6 +289,53 @@ const Auctions = () => {
             ))}
           </ul>
         </aside>
+
+        {/* Sidebar Drawer - Only on Mobile */}
+        {isSidebarOpen && (
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex md:hidden">
+            <div className="bg-white w-3/5 max-w-sm p-4 shadow-lg h-full overflow-y-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h1 className="text-lg font-bold">Categories</h1>
+                <button className="text-gray-500" onClick={closeDrawer}>
+                  <XIcon className="h-6 w-6" />
+                </button>
+              </div>
+              <h2 className="text-sm text-gray-600">
+                Home &gt;
+                <span className="text-[#48B1DB] font-semibold">
+                  Collectible Products
+                </span>
+              </h2>
+              <h1 className="font-bold py-3">Collectible Products</h1>
+              <p className="text-base">All Categories</p>
+
+              <ul className="my-4 bg-[#EEF9FE] px-2">
+            {categories.map((item, index) => (
+              <li
+                key={index}
+                className="py-2 cursor-pointer"
+                onClick={() => {
+                    setSelectedCategory(item.name)
+                    closeDrawer();
+                  }}
+              >
+                <span
+                  className={`${
+                    selectedCategory === item.name
+                      ? "font-semibold text-[#48B1DB]"
+                      : "text-gray-600"
+                  }`}
+                >
+                  {item.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+            </div>
+            <div className="flex-1" onClick={closeDrawer}></div>
+          </div>
+        )}
+
 
         {/* Main Content with Search */}
         <div className="w-full">
@@ -357,40 +409,38 @@ const Auctions = () => {
 
           {/* Display filtered items */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
-            {currentItems.map((item: any) => (
-              <Link href={`/Auctions/${item.id}`} key={item.id}>
-                {" "}
-                {/* Add Link to navigate to dynamic page */}
-                <div className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]">
-                  <Image
-                    width={300}
-                    height={250}
-                    src={item.imageUrl}
-                    alt={item.name}
-                    className="w-full h-40 md:h-52 object-cover rounded-md p-1"
-                    onError={() =>
-                      console.log(`Failed to load image: ${item.imageUrl}`)
-                    }
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-base md:text-lg truncate">
-                      {item.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm md:text-base">
-                      {item.location}
+            {currentItems.map((item:AuctionItem) => (
+              <Link href={`/Auctions/${item.id}`} key={item.id}
+                className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]"
+              >
+                <Image
+                  width={300}
+                  height={250}
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className="w-full h-40 md:h-52 object-cover rounded-md p-1"
+                  onError={() =>
+                    console.log(`Failed to load image: ${item.imageUrl}`)
+                  }
+                />
+                <div className="p-4">
+                  <h3 className="font-semibold text-base md:text-lg truncate">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    {item.location}
+                  </p>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-lg md:text-xl text-blue-600">
+                      {item.price}
                     </p>
-                    <div className="flex justify-between items-center mt-2">
-                      <p className="text-lg md:text-xl text-blue-600">
-                        {item.price}
-                      </p>
-                      <p className="text-xs md:text-sm text-gray-500">
-                        {item.bids}
-                      </p>
-                    </div>
-                    <p className="text-xs md:text-sm text-gray-500 mt-1">
-                      {item.timeRemaining}
+                    <p className="text-xs md:text-sm text-gray-500">
+                      {item.bids}
                     </p>
                   </div>
+                  <p className="text-xs md:text-sm text-gray-500 mt-1">
+                    {item.timeRemaining}
+                  </p>
                 </div>
               </Link>
             ))}

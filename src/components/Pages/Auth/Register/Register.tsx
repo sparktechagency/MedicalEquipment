@@ -8,7 +8,7 @@ import { FaLock, FaUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { GiPhone } from "react-icons/gi";
 
-import imageLogo from "@/assets/logo/Logo.png";
+// import imageLogo from "@/assets/logo/Logo.png";
 import { FaLocationDot } from "react-icons/fa6";
 
 interface RegisterFormValues {
@@ -26,7 +26,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <section className=" w-[90%] mx-auto   py-20 md:px-6 lg:px-10  rounded-md my-10 ">
+    <section className=" w-[90%] mx-auto   md:px-6 lg:px-10  rounded-md my-10 ">
       <h1 className="text-center text-[40px] font-bold">
         <span className="text-[#48B1DB] font-bold">Sign Up</span> With Email
       </h1>
@@ -38,13 +38,13 @@ const Register: React.FC = () => {
         <div className="w-full max-w-[450px] mx-auto px-4 md:px-0">
           <div className="bg-[#BADAEB40] shadow-lg rounded-lg ">
             <div className="px-6 py-3 md:px-8 lg:px-10">
-              <Image
+              {/* <Image
                 src={imageLogo}
                 alt="Logo"
                 width={150}
                 height={150}
                 className="mx-auto"
-              />
+              /> */}
 
               <Form layout="vertical" onFinish={onFinish} className="space-y-3">
                 <Form.Item
@@ -143,18 +143,6 @@ const Register: React.FC = () => {
                   Login
                 </Link>
               </div>
-              <div className="flex items-center space-x-2 mt-2">
-                <div className="border border-black md:w-[30%] w-[25%]"></div>
-                <h1 className=" md:text-xl">Or login with</h1>
-                <div className="border border-black md:w-[30%] w-[25%]"></div>
-              </div>
-              <Image
-                className="mx-auto mt-2"
-                src={google}
-                width={50}
-                height={50}
-                alt="google"
-              />
             </div>
           </div>
         </div>

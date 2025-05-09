@@ -15,3 +15,15 @@ export  interface MetaData {
     description: string;
     keywords: string[];
   }
+
+ export interface AuctionItem {
+    id: number;
+    name: string;
+    location: string;
+    price: string;
+    imageUrl: string;
+    timeRemaining: string;
+    bids: string;
+    Categories: string;
+    type: string;
+  }
