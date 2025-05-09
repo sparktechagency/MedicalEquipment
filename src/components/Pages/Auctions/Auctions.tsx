@@ -3,67 +3,36 @@
 import React, { useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline"; // Using Heroicons for icons
 import Image from "next/image";
+import PaginationComponent from "@/components/UI/PaginationComponent"; // Import the Pagination component
+import Link from "next/link";
 
 const Auctions = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    // You can handle search logic here
-  };
-
-  const showDrawer = () => {
-    setIsSidebarOpen(true);
-  };
-
-  const closeDrawer = () => {
-    setIsSidebarOpen(false);
-  };
-
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [activeTab, setActiveTab] = useState("all"); // Track the active tab
   const [sortOption, setSortOption] = useState("auction-time"); // Track the selected sort option
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // Track selected category
 
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-  };
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8; // Set the number of items per page
 
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortOption(e.target.value);
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   const categories = [
-    {
-      name: "Diagnostic Equipment",
-    },
-    {
-      name: "Imaging Devices",
-    },
-    {
-      name: "Surgical Instruments",
-    },
-    {
-      name: "Patient Monitoring",
-    },
-    {
-      name: "Therapeutic Devices",
-    },
-    {
-      name: "Laboratory Equipment",
-    },
-    {
-      name: "Medical Consumables",
-    },
-    {
-      name: "Rehabilitation Equipment",
-    },
-    {
-      name: "Anesthesia Equipment",
-    },
-    {
-      name: "Sterilization Equipment",
-    },
+    { name: "Diagnostic Equipment" },
+    { name: "Imaging Devices" },
+    { name: "Surgical Instruments" },
+    { name: "Patient Monitoring" },
+    { name: "Therapeutic Devices" },
+    { name: "Laboratory Equipment" },
+    { name: "Medical Consumables" },
+    { name: "Rehabilitation Equipment" },
+    { name: "Anesthesia Equipment" },
+    { name: "Sterilization Equipment" },
   ];
-  
 
   const data = [
     {
@@ -74,7 +43,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Patient Monitoring"
+      Categories: "Patient Monitoring",
+      type: "auction", // Added type
     },
     {
       id: 2,
@@ -84,7 +54,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Surgical Instruments"
+      Categories: "Surgical Instruments",
+      type: "auction", // Added type
     },
     {
       id: 3,
@@ -94,7 +65,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Imaging Devices"
+      Categories: "Imaging Devices",
+      type: "auction", // Added type
     },
     {
       id: 4,
@@ -104,7 +76,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Imaging Devices"
+      Categories: "Imaging Devices",
+      type: "auction", // Added type
     },
     {
       id: 5,
@@ -114,7 +87,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Diagnostic Equipment"
+      Categories: "Diagnostic Equipment",
+      type: "auction", // Added type
     },
     {
       id: 6,
@@ -124,7 +98,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Imaging Devices"
+      Categories: "Imaging Devices",
+      type: "auction", // Added type
     },
     {
       id: 7,
@@ -134,7 +109,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Diagnostic Equipment"
+      Categories: "Diagnostic Equipment",
+      type: "auction", // Added type
     },
     {
       id: 8,
@@ -144,7 +120,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Diagnostic Equipment"
+      Categories: "Diagnostic Equipment",
+      type: "auction", // Added type
     },
     {
       id: 9,
@@ -154,7 +131,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Patient Monitoring"
+      Categories: "Patient Monitoring",
+      type: "auction", // Added type
     },
     {
       id: 10,
@@ -164,7 +142,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Patient Monitoring"
+      Categories: "Patient Monitoring",
+      type: "auction", // Added type
     },
     {
       id: 11,
@@ -174,7 +153,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Surgical Instruments"
+      Categories: "Surgical Instruments",
+      type: "auction", // Added type
     },
     {
       id: 12,
@@ -184,7 +164,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Surgical Instruments"
+      Categories: "Surgical Instruments",
+      type: "auction", // Added type
     },
     {
       id: 13,
@@ -194,7 +175,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Surgical Instruments"
+      Categories: "Surgical Instruments",
+      type: "auction", // Added type
     },
     {
       id: 14,
@@ -204,7 +186,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Surgical Instruments"
+      Categories: "Surgical Instruments",
+      type: "auction", // Added type
     },
     {
       id: 15,
@@ -214,7 +197,8 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Imaging Devices"
+      Categories: "Imaging Devices",
+      type: "auction", // Added type
     },
     {
       id: 16,
@@ -224,15 +208,53 @@ const Auctions = () => {
       imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
       timeRemaining: "2 days 4 hours 5 min",
       bids: "2 Bids",
-      Categories:"Imaging Devices"
+      Categories: "Imaging Devices",
+      type: "auction", // Added type
     },
   ];
+
+  // Filter data based on search, category, and tab
+  const filteredData = data.filter((item) => {
+    const matchesSearch =
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.location.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory =
+      !selectedCategory || item.Categories === selectedCategory;
+
+    const matchesTab =
+      activeTab === "all" ||
+      (activeTab === "auction" && item.type === "auction");
+
+    return matchesSearch && matchesCategory && matchesTab;
+  });
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // Paginate the data based on currentPage
+  const currentItems = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  function showDrawer(event: any) {
+    setIsSidebarOpen(true);
+  }
+
+  function handleSearch(event: any) {
+    event.preventDefault();
+    // Reset to the first page when a new search is performed
+    setCurrentPage(1);
+    console.log("Search query:", searchQuery);
+    // Additional logic for handling search can be added here
+  }
 
   return (
     <section className="w-full md:container mx-auto mt-2">
       <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-4">
         {/* Sidebar - Always visible on desktop */}
-        <aside className="hidden md:block  pr-4">
+        <aside className="hidden md:block pr-4">
           <h2 className="text-sm text-gray-600 ">
             Home &gt;
             <span className="text-[#48B1DB] font-semibold ml-1 ">
@@ -244,43 +266,24 @@ const Auctions = () => {
 
           <ul className="my-4 bg-[#EEF9FE] p-5">
             {categories.map((item, index) => (
-              <li key={index} className="py-2">
-                {item.name}
+              <li
+                key={index}
+                className="py-2 cursor-pointer"
+                onClick={() => setSelectedCategory(item.name)}
+              >
+                <span
+                  className={`${
+                    selectedCategory === item.name
+                      ? "font-semibold text-[#48B1DB]"
+                      : "text-gray-600"
+                  }`}
+                >
+                  {item.name}
+                </span>
               </li>
             ))}
           </ul>
         </aside>
-
-        {/* Sidebar Drawer - Only on Mobile */}
-        {isSidebarOpen && (
-          <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex md:hidden">
-            <div className="bg-white w-2/4 max-w-sm p-4 shadow-lg h-full overflow-y-auto">
-              <div className="flex justify-between items-center mb-4">
-                <h1 className="text-lg font-bold">Categories</h1>
-                <button className="text-gray-500" onClick={closeDrawer}>
-                  <XIcon className="h-6 w-6" />
-                </button>
-              </div>
-              <h2 className="text-sm text-gray-600">
-                Home &gt;
-                <span className="text-[#48B1DB] font-semibold">
-                  Collectible Products
-                </span>
-              </h2>
-              <h1 className="font-bold py-3">Collectible Products</h1>
-              <p className="text-base">All Categories</p>
-
-              <ul className="my-4 bg-[#EEF9FE]">
-                {categories.map((item, index) => (
-                  <li key={index} className="py-2">
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex-1" onClick={closeDrawer}></div>
-          </div>
-        )}
 
         {/* Main Content with Search */}
         <div className="w-full">
@@ -296,6 +299,8 @@ const Auctions = () => {
               <input
                 name="search"
                 type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search your products here..."
                 className="border-2 border-[#48B1DB] bg-[#EEF9FE] rounded-md px-4 py-2 w-full md:w-[330px]"
               />
@@ -307,12 +312,14 @@ const Auctions = () => {
               </button>
             </form>
           </div>
+
+          {/* Tabs and Sorting Options */}
           <div>
             <div className="flex items-center justify-between py-4 border-b border-[#E5F6FD] px-2 md:px-0">
               {/* Tabs */}
               <div className="flex space-x-4">
                 <button
-                  onClick={() => handleTabClick("all")}
+                  onClick={() => setActiveTab("all")}
                   className={`px-2 py-2 text-sm font-semibold rounded-lg ${
                     activeTab === "all"
                       ? "bg-blue-100 text-blue-600"
@@ -322,7 +329,7 @@ const Auctions = () => {
                   All Listings
                 </button>
                 <button
-                  onClick={() => handleTabClick("auction")}
+                  onClick={() => setActiveTab("auction")}
                   className={`px-2 py-2 text-sm font-semibold rounded-lg ${
                     activeTab === "auction"
                       ? "bg-blue-100 text-blue-600"
@@ -335,62 +342,66 @@ const Auctions = () => {
 
               {/* Sorting Option */}
               <div className="flex items-center  space-x-2">
-                {/* <span className="">20 results</span> */}
                 <select
                   value={sortOption}
-                  onChange={handleSortChange}
+                  onChange={(e) => setSortOption(e.target.value)}
                   className="text-sm border border-blue-300 rounded-md  py-2 focus:outline-none"
                 >
                   <option value="auction-time">Sort Action</option>
-                  <option value="price-high-to-low">
-                     (High to Low)
-                  </option>
-                  <option value="price-low-to-high">
-                    
-                  </option>
+                  <option value="price-high-to-low">(High to Low)</option>
+                  <option value="price-low-to-high">(Low to High)</option>
                 </select>
               </div>
             </div>
           </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
-                {data.map((item:any) => (
-                  <div
-                    key={item.id}
-                    className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]"
-                  >
-                    <Image
-                      width={300}
-                      height={250}
-                      src={item.imageUrl}
-                      alt={item.name}
-                      className="w-full h-40 md:h-52 object-cover rounded-md p-1"
-                      onError={() =>
-                        console.log(`Failed to load image: ${item.imageUrl}`)
-                      }
-                    />
-                    <div className="p-4">
-                      <h3 className="font-semibold text-base md:text-lg truncate">
-                        {item.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm md:text-base">
-                        {item.location}
+
+          {/* Display filtered items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
+            {currentItems.map((item: any) => (
+              <Link href={`/Auctions/${item.id}`} key={item.id}>
+                {" "}
+                {/* Add Link to navigate to dynamic page */}
+                <div className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]">
+                  <Image
+                    width={300}
+                    height={250}
+                    src={item.imageUrl}
+                    alt={item.name}
+                    className="w-full h-40 md:h-52 object-cover rounded-md p-1"
+                    onError={() =>
+                      console.log(`Failed to load image: ${item.imageUrl}`)
+                    }
+                  />
+                  <div className="p-4">
+                    <h3 className="font-semibold text-base md:text-lg truncate">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-600 text-sm md:text-base">
+                      {item.location}
+                    </p>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="text-lg md:text-xl text-blue-600">
+                        {item.price}
                       </p>
-                      <div className="flex justify-between items-center mt-2">
-                        <p className="text-lg md:text-xl text-blue-600">
-                          {item.price}
-                        </p>
-                        <p className="text-xs md:text-sm text-gray-500">
-                          {item.bids}
-                        </p>
-                      </div>
-                      <p className="text-xs md:text-sm text-gray-500 mt-1">
-                        {item.timeRemaining}
+                      <p className="text-xs md:text-sm text-gray-500">
+                        {item.bids}
                       </p>
                     </div>
+                    <p className="text-xs md:text-sm text-gray-500 mt-1">
+                      {item.timeRemaining}
+                    </p>
                   </div>
-                ))}
-              </div>
-           
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <PaginationComponent
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handlePageChange={handlePageChange}
+          />
         </div>
       </div>
     </section>
