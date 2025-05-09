@@ -90,7 +90,7 @@ const Navbar = () => {
           type="text"
           size="large"
           className="md:hidden "
-          icon={<MenuOutlined  />}
+          icon={<MenuOutlined size={30} />}
           onClick={showDrawer}
         />
       </div>

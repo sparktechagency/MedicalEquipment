@@ -25,6 +25,9 @@ const config: Config = {
         primaryBg: "#EBF6FE",
         hoverText: "#dcbb87",
       },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(91.26deg, #48B1DB 3.55%, #C4E6F3 99.57%)',
+      },
     },
   },
   plugins: [],
