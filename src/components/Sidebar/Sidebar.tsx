@@ -57,7 +57,7 @@ const Sidebar = () => {
                   className="flex items-center space-x-2"
                   onClick={closeDrawer}
                 >
-                  <span>Report</span>
+                  <span>My Bid  </span>
                 </div>
               </Link>
             </div>
@@ -77,7 +77,7 @@ const Sidebar = () => {
                   className="flex items-center space-x-2"
                   onClick={closeDrawer}
                 >
-                  <span>My History</span>
+                  <span>Report</span>
                 </div>
               </Link>
             </div>
@@ -99,7 +99,7 @@ const Sidebar = () => {
       {/* Desktop Sidebar */}
       <aside className="hidden md:block bg-[#EEF9FE] w-50  px-7 rounded-md border border-[#EEF9FE]">
         <div className="py-3">
-          <Link href="/profile">
+          <Link href="/userProfile">
             <div className="flex items-center space-x-2">
               <span>My Profile</span>
             </div>

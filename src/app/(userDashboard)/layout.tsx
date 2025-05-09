@@ -2,6 +2,7 @@ import Header from "@/components/Header/Header";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Footer from "@/components/Footer/Footer";
 import React from "react";
+import UserProfilesImage from "@/components/Pages/coomon/UserProfilesImage";
 
 const userDashboard = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -18,6 +19,7 @@ const userDashboard = ({ children }: { children: React.ReactNode }) => {
 
           {/* Main content */}
           <div className="top-2 col-span-11 md:col-span-9 lg:col-span-10 md:px-2 px-5">
+            <UserProfilesImage/>
             {children}
           </div>
         </div>

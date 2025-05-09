@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Form, Checkbox, Select } from "antd";
-import google from "@/assets/Authentication/google.png";
 import InputComponent from "@/components/UI/InputComponent";
-import Image from "next/image";
 import { FaLock, FaUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { GiPhone } from "react-icons/gi";
