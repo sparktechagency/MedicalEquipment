@@ -98,7 +98,7 @@ const ProductPage = () => {
           </div>
 
           <div className="mb-4">
-            <h1 className="text-2xl font-bold text-blue-600">$200</h1>
+            <h1 className="text-2xl font-bold text-[#48B1DB]">$200</h1>
             <br />
             <h1 className="text-sm text-gray-500">2 Bids</h1>
           </div>
@@ -147,7 +147,7 @@ const ProductPage = () => {
             <Button
               size="large"
               onClick={handleSubmitBid}
-              className="w-1/3 mb-0"
+              className="w-1/3 mb-0 bg-[#48B1DB] text-white "
               type="primary"
             >
               Review bid
@@ -190,7 +190,7 @@ const ProductPage = () => {
                   });
                 setIsReviewModalOpen(false); // Close the review modal after submission
               }}
-              className="w-1/3"
+              className="w-1/3 bg-[#48B1DB] text-white"
               type="primary"
             >
               Confirm Bid

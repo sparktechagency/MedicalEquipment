@@ -1,4 +1,4 @@
-import { div } from "framer-motion/client";
+
 import Image from "next/image";
 
 const UserProfilesImage = () => {
@@ -12,7 +12,7 @@ const UserProfilesImage = () => {
             width={100}
             height={100}
             src={""} // Show uploaded image or placeholder
-            alt="User Avatar"
+            alt="Avatar"
             className="ml-4 md:ml-0 w-24 h-24 rounded-full border-4 border-white"
           />
           <div>

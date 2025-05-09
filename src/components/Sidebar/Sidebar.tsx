@@ -57,7 +57,7 @@ const Sidebar = () => {
                   className="flex items-center space-x-2"
                   onClick={closeDrawer}
                 >
-                  <span>My Bid  </span>
+                  <span>My Bid </span>
                 </div>
               </Link>
             </div>
@@ -72,7 +72,7 @@ const Sidebar = () => {
               </Link>
             </div>
             <div className="py-2">
-              <Link href="/">
+              <Link href="/Report">
                 <div
                   className="flex items-center space-x-2"
                   onClick={closeDrawer}
@@ -98,31 +98,32 @@ const Sidebar = () => {
 
       {/* Desktop Sidebar */}
       <aside className="hidden md:block bg-[#EEF9FE] w-50  px-7 rounded-md border border-[#EEF9FE]">
+        {/* Full height and background color */}
         <div className="py-3">
           <Link href="/userProfile">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 " onClick={closeDrawer}>
               <span>My Profile</span>
             </div>
           </Link>
         </div>
         <div className="py-3">
           <Link href="/">
-            <div className="flex items-center space-x-2">
-              <span>Report</span>
+            <div className="flex items-center space-x-2" onClick={closeDrawer}>
+              <span>My Bid </span>
             </div>
           </Link>
         </div>
         <div className="py-3">
           <Link href="/">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2" onClick={closeDrawer}>
               <span>Order</span>
             </div>
           </Link>
         </div>
-        <div className="py-3">
-          <Link href="/">
-            <div className="flex items-center space-x-2">
-              <span>My History</span>
+        <div className="py-2">
+          <Link href="/Report">
+            <div className="flex items-center space-x-2" onClick={closeDrawer}>
+              <span>Report</span>
             </div>
           </Link>
         </div>

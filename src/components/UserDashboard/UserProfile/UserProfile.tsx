@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import Image from "next/image";
 import { useState } from "react";
 import { MdDriveFolderUpload } from "react-icons/md";
 const UserProfile = () => {

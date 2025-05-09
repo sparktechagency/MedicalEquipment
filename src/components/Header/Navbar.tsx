@@ -64,7 +64,7 @@ const Navbar = () => {
         {/* Desktop Action Buttons */}
         <div className="flex justify-between items-center lg:gap-8 md:gap-4 gap-3">
           {/* Search Button */}
-          <Link href="#">
+          <Link href="/userProfile">
             <h1 className="bg-[#E5F6FD] p-[7px] md:p-[10px] rounded-full text-[#48B1DB]">
               <LuShoppingCart size={30} />
             </h1>
