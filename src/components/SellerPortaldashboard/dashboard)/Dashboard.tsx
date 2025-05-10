@@ -6,9 +6,9 @@ const Dashboard = () => {
     <div>
        <h1 className="text-left text-[20px] font-semibold pb-2">Dashboard</h1>
        <Status />
-       <div className="w-full">
+       <div className="w-full py-7">
         <div className="w-[70%]"></div>
-        <div className="w-[30%]">
+        <div className="w-[29%]">
           <DemoPiechat />
         </div>
        </div>

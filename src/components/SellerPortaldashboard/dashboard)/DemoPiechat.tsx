@@ -2,7 +2,7 @@
 import React from 'react';
 import { Pie } from '@ant-design/plots';
 
-const DemoPie = () => {
+const DemoPiechat = () => {
   const data = [
     { type: 'Active Product', value: 75 },
     { type: 'Total Sold', value: 35 },
@@ -12,13 +12,27 @@ const DemoPie = () => {
     data,
     angleField: 'value',
     colorField: 'type',
-    innerRadius: 0.6,  // Similar to the second example
+    innerRadius: 0.6,
+    radius: 1,
+    autoFit: true,
+    style: {
+      backgroundColor: '#EEF9FE', // chart background
+    },
     label: {
-      text: 'value', // Displays the value in the label
+      type: 'inner',
+      offset: '-30%',
+      content: ({ percent }:{percent: number}) => `${(percent * 100).toFixed(0)}%`,
       style: {
-        fontWeight: 'bold',
-
+        fontSize: 14,
+        fontWeight: 600,
+        fill: '#222', // label text color
       },
+    },
+    tooltip: {
+      formatter: (datum: { type: string; value: number }) => ({
+        name: datum.type,
+        value: `${datum.value} (${((datum.value / 110) * 100).toFixed(1)}%)`,
+      }),
     },
     legend: {
       color: {
@@ -31,19 +45,24 @@ const DemoPie = () => {
       {
         type: 'text',
         style: {
-          text: 'P&L\nTotal profit growth of 65%', // Custom annotation text
+          text: 'P&L\nTotal growth\n65%',
           x: '50%',
           y: '50%',
           textAlign: 'center',
-          fontSize: 12,
-          fontStyle: 'bold',
+          fontSize: 14,
+          fontWeight: 600,
+          fill: '#48B1DB', // accent text color
         },
       },
     ],
-     color: ['#FF7F50', '#87CEFA'],
+    color: ['#48B1DB', '#FF7F50'], // Primary + Coral
   };
 
-  return <Pie {...config} />;
+  return (
+    <div style={{ backgroundColor: '#EEF9FE', padding: '1rem', borderRadius: '12px' }}>
+      <Pie {...config} />
+    </div>
+  );
 };
 
-export default DemoPie;
+export default DemoPiechat;
