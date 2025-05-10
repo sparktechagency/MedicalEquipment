@@ -1,21 +1,23 @@
-
-import Header from "@/components/Header/Header";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import HeaderSellerPortal from "@/components/SellerPortaldashboard/HeaderSellerPortal/HeaderSellerPortal";
+import SidebarSellerPortal from "@/components/SellerPortaldashboard/SidebarSellerPortal/SidebarSellerPortal";
 import React from "react";
 
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
   return (
-    <section className=" bg-[#FFFFFF]">
-      <div className="lg:container pt-[79px]">
-          <div className="pt-2">
-          <Header />
+    <section className="w-full">
+      <div className="md:flex">
+        {/* Sidebar with fixed width */}
+        <div className="md:w-[300px] w-full"> {/* Fixed width on larger screens */}
+          <SidebarSellerPortal />
+        </div>
+
+        {/* Main content area */}
+        <div className="md:w-[calc(100%-30px)] w-full"> {/* Remaining width */}
+          <HeaderSellerPortal />
+          <div className="p-2 md:p-3">
+            {children}
           </div>
-          <div className="grid grid-cols-12 px-3 md:px-0 lg:grid-cols-12 md:grid-cols-11 py-8  md:space-x-32 lg:space-x-28 xl:space-x-14">
-            <div className="col-span-1 md:col-span-2 lg:col-span-2">
-              <Sidebar />
-            </div>
-            <div className="col-span-11 md:col-span-9 lg:col-span-10">{children}</div>
-          </div>
+        </div>
       </div>
     </section>
   );

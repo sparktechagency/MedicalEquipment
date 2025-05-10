@@ -52,7 +52,7 @@ const Sidebar = () => {
               </Link>
             </div>
             <div className="py-2">
-              <Link href="/">
+              <Link href="/UserMyBid">
                 <div
                   className="flex items-center space-x-2"
                   onClick={closeDrawer}
@@ -62,7 +62,7 @@ const Sidebar = () => {
               </Link>
             </div>
             <div className="py-2">
-              <Link href="/">
+              <Link href="/UserOrder">
                 <div
                   className="flex items-center space-x-2"
                   onClick={closeDrawer}
@@ -97,37 +97,37 @@ const Sidebar = () => {
       )}
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:block bg-[#EEF9FE] w-50  px-7 rounded-md border border-[#EEF9FE]">
+      <aside className="hidden md:block bg-[#EEF9FE] w-52  px-3 rounded-md border border-[#EEF9FE]">
         {/* Full height and background color */}
-        <div className="py-3">
+        <div className="py-5">
           <Link href="/userProfile">
             <div className="flex items-center space-x-2 " onClick={closeDrawer}>
               <span>My Profile</span>
             </div>
           </Link>
         </div>
-        <div className="py-3">
-          <Link href="/">
+        <div className="py-5">
+          <Link href="/UserMyBid">
             <div className="flex items-center space-x-2" onClick={closeDrawer}>
               <span>My Bid </span>
             </div>
           </Link>
         </div>
-        <div className="py-3">
-          <Link href="/">
+        <div className="py-5">
+          <Link href="/UserOrder">
             <div className="flex items-center space-x-2" onClick={closeDrawer}>
               <span>Order</span>
             </div>
           </Link>
         </div>
-        <div className="py-2">
+        <div className="py-5">
           <Link href="/Report">
             <div className="flex items-center space-x-2" onClick={closeDrawer}>
               <span>Report</span>
             </div>
           </Link>
         </div>
-        <div className="py-10 pt-10 mt-auto">
+        <div className="pt-20 pb-2 mt-auto">
           <button onClick={showLogoutModal} className="w-full text-left">
             <div className="flex items-center space-x-2">
               <span>Logout</span>

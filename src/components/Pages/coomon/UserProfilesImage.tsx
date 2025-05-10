@@ -16,9 +16,9 @@ const UserProfilesImage = () => {
             className="ml-4 md:ml-0 w-24 h-24 rounded-full border-4 border-white"
           />
           <div>
-            <h2 className="text-white text-2xl font-semibold">John Doe</h2>
+            <h2 className="text-white text-xl md:text-2xl font-semibold">My Product History </h2>
             <p className="text-white text-sm">
-              Update your profile and personal details.
+              Manage Products.
             </p>
           </div>
         </div>
