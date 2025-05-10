@@ -56,7 +56,7 @@ const SidebarSellerPortal = () => {
   };
 
   const navItems = [
-    { href: "/Dashboard", icon: MdDashboard, label: "Dashboard" },
+    { href: "/SellerPortalDashboard", icon: MdDashboard, label: "Dashboard" },
     { href: "/UserMyBid", icon: LuPackageOpen, label: "Product Management" },
     { href: "/UserOrder", icon: TbUserDollar, label: "Past Bid User" },
     { href: "/Report", icon: BiDollarCircle, label: "Earnings" },

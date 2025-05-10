@@ -59,7 +59,7 @@ const DemoPiechat = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#EEF9FE', padding: '1rem', borderRadius: '12px' }}>
+    <div style={{ backgroundColor: '#EEF9FE', padding: '0.5rem', borderRadius: '12px' }}>
       <Pie {...config} />
     </div>
   );

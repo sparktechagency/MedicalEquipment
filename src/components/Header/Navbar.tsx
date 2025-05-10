@@ -28,7 +28,7 @@ const navLink = [
     label: "Contact",
   },
   {
-    href: "/SellerPortal",
+    href: "/SellerPortalDashboard",
     label: "Seller portal",
   },
 ];
