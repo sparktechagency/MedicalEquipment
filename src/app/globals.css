@@ -28,7 +28,7 @@
   align-items: center;
   margin: 0 4px;
   border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: #E6F1F8;
   cursor: pointer;
   color: #333;
   font-weight: bold;
@@ -36,7 +36,7 @@
 }
 
 .pagination-container .page-item:hover {
-  background-color: #d1d1d1;
+  background-color: #E6F1F8;
 }
 
 .pagination-container .page-item.active {

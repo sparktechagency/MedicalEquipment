@@ -14,7 +14,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
         {/* Main content area */}
         <div className="md:w-[calc(100%-30px)] w-full"> {/* Remaining width */}
           <HeaderSellerPortal />
-          <div className="p-2 md:p-3">
+          <div className="p-2 md:p-4">
             {children}
           </div>
         </div>
