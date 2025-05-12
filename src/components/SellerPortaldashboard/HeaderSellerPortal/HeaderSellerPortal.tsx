@@ -1,10 +1,20 @@
 import imageProfile from "@/assets/Sidebar/user.png";
 import Image from "next/image";
+import Link from "next/link";
+import { IoNotificationsCircleOutline } from "react-icons/io5";
 const HeaderSellerPortal = () => {
   return (
     <div className="bg-[#48B1DB] p-3 flex items-center justify-end">
       {/* Left Side */}
       <div className="flex items-center">
+        <Link href="/SellerNotification">
+          <div className="mr-4 bg-white rounded-full p-3">
+            <IoNotificationsCircleOutline
+              className="text-[#48B1DB] "
+              size={30}
+            />
+          </div>
+        </Link>
         <Image
           src={imageProfile}
           alt="Profile"
