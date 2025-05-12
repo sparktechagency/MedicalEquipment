@@ -60,9 +60,11 @@ const DemoPiechat = () => {
 
   return (
     <div style={{ backgroundColor: '#EEF9FE', padding: '0.5rem', borderRadius: '12px' }}>
-      <Pie {...config} />
+      {/* Set the height here */}
+      <Pie {...config} height={420} />  {/* Adjust the height as needed */}
     </div>
   );
 };
 
 export default DemoPiechat;
+
