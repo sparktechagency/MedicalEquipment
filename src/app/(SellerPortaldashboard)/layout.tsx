@@ -7,7 +7,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
     <section className="w-full">
       <div className="md:flex">
         {/* Sidebar with fixed width */}
-        <div className="md:w-[300px] w-full"> {/* Fixed width on larger screens */}
+        <div className="md:w-[300px] w-full "> {/* Fixed width on larger screens */}
           <SidebarSellerPortal />
         </div>
 
