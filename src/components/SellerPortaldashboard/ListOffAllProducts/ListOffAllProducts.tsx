@@ -1,5 +1,6 @@
 "use client";
 import PaginationComponent from "@/components/UI/PaginationComponent";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -28,8 +29,8 @@ const ListOffAllProducts = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentProducts = allProducts.slice(startIndex, endIndex);
 
-  // Handle page change
-  const handlePageChange = (page: any) => {
+
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
@@ -50,7 +51,9 @@ const ListOffAllProducts = () => {
             >
               <div className="flex items-center space-x-4">
                 {/* Replace FaStethoscope with the image */}
-                <img
+                <Image
+                  width={50}
+                  height={50}
                   src={product.image}
                   alt={product.name}
                   className="h-16 w-16 object-cover"

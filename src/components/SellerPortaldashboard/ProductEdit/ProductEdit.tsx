@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaImage, FaTimes } from "react-icons/fa";
-import Link from "next/link";
 
 const ProductEdit = () => {
   const [productTitle, setProductTitle] = useState("");
