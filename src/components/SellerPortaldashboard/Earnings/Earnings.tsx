@@ -209,7 +209,7 @@ const Earnings: React.FC = () => {
             columns={columns}
             dataSource={dataSource}
             pagination={{
-              pageSize: 5, // You can adjust the page size
+              pageSize: 10, // You can adjust the page size
               position: ["bottomCenter"], // Option to position the pagination
             }}
             scroll={{ x: 1000 }}

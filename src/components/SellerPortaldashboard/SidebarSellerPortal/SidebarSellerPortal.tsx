@@ -59,7 +59,7 @@ const SidebarSellerPortal = () => {
     { href: "/SellerPortalDashboard", icon: MdDashboard, label: "Dashboard" },
     { href: "/UserMyBid", icon: LuPackageOpen, label: "Product" },
     { href: "/UserOrderList", icon: TbUserDollar, label: "Order List"},
-    { href: "/UserOrder", icon: TbUserDollar, label: "Past Bid User" },
+    { href: "/BidUserlist", icon: TbUserDollar, label: "Past Bid User" },
     { href: "/Earnings", icon: BiDollarCircle, label: "Earnings" },
     { href: "/Settings", icon: RiSettingsLine, label: "Settings" },
   ];
