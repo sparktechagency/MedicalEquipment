@@ -3,18 +3,20 @@ import PaginationComponent from "@/components/UI/PaginationComponent";
 import Link from "next/link";
 import { useState } from "react";
 
-
-const ListOffAllProducts =() => {
+const ListOffAllProducts = () => {
   // Full list of products (20 items as per the image)
-  const allProducts = Array(20).fill({
-    name: "GE Vivid S70 Ultrasound Machine",
-    image: "https://i.ibb.co/bjzn3zKW/Rectangle-3.png", // Corrected key name
-    price: 200,
-    status: "APPROVE",
-  }).map((product, index) => ({
-    ...product,
-    status: index < 2 ? "PENDING" : "APPROVE", // First two are PENDING, rest are APPROVE
-  }));
+  const allProducts = Array(20)
+    .fill({
+      id: 1,
+      name: "GE Vivid S70 Ultrasound Machine",
+      image: "https://i.ibb.co/bjzn3zKW/Rectangle-3.png", // Corrected key name
+      price: 200,
+      status: "APPROVE",
+    })
+    .map((product, index) => ({
+      ...product,
+      status: index < 2 ? "PENDING" : "APPROVE", // First two are PENDING, rest are APPROVE
+    }));
 
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +29,7 @@ const ListOffAllProducts =() => {
   const currentProducts = allProducts.slice(startIndex, endIndex);
 
   // Handle page change
-  const handlePageChange = (page:any) => {
+  const handlePageChange = (page: any) => {
     setCurrentPage(page);
   };
 
@@ -41,7 +43,8 @@ const ListOffAllProducts =() => {
         </div>
         <div>
           {currentProducts.map((product, index) => (
-            <Link href="/BidderList"
+            <Link
+              href="/BidderList"
               key={index}
               className="flex items-center justify-between border-[#91C5DF]  bg-gray-50 border my-5 rounded-md p-1"
             >
@@ -54,22 +57,26 @@ const ListOffAllProducts =() => {
                 />
                 <div>
                   <p className="text-gray-800 font-medium">{product.name}</p>
-                  <div className="flex space-x-5 items-center"><p className="text-gray-600">${product.price}</p> <p
-                  className={`px-3 py-1 rounded-full text-sm ${
-                    product.status === "PENDING"
-                      ? "bg-gray-200 text-gray-700"
-                      : "bg-blue-100 text-blue-700"
-                  }`}
-                >
-                  {product.status}
-                </p></div>
+                  <div className="flex space-x-5 items-center">
+                    <p className="text-gray-600">${product.price}</p>{" "}
+                    <p
+                      className={`px-3 py-1 rounded-full text-sm ${
+                        product.status === "PENDING"
+                          ? "bg-gray-200 text-gray-700"
+                          : "bg-blue-100 text-blue-700"
+                      }`}
+                    >
+                      {product.status}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                
-                <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                  Edit
-                </button>
+                <Link href={`/ListOffAllProduct/${product.id}`}>
+                  <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Edit
+                  </button>
+                </Link>
                 <button className="p-2 hover:bg-gray-200 rounded">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -100,6 +107,6 @@ const ListOffAllProducts =() => {
       </div>
     </div>
   );
-}
+};
 
-export default ListOffAllProducts
+export default ListOffAllProducts;

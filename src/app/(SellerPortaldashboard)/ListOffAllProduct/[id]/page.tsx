@@ -1,4 +1,5 @@
-import ProductEdit from "@/components/SellerPortaldashboard/ProductEdit/productEdit"
+import ProductEdit from "@/components/SellerPortaldashboard/ProductEdit/ProductEdit"
+
 
 const page = () => {
     return (
