@@ -25,7 +25,7 @@ const SellerProfile = () => {
             alt="User Image"
             width={50}
             height={50}
-            className="rounded-full"
+            className="rounded-full w-24 h-24 object-cover"
           />
         </div>
         <div>
@@ -87,7 +87,7 @@ const SellerProfile = () => {
         <Link href={`/sellerProfile/${1}`}>
           <button
             onClick={handleUpdateProfile}
-            className="w-full py-2 px-4 bg-[#48B1DB] text-white rounded-md hover:bg-blue-700 transition"
+            className="w-full py-2 px-4 bg-[#48B1DB] text-white rounded-md transition"
           >
             Edit Profile
           </button>

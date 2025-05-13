@@ -35,7 +35,7 @@ const SellerProfile = () => {
               alt="User Image"
               width={100} // Set a fixed width for the image
               height={100} // Set a fixed height for the image
-              className="rounded-full h-24 w-24 cursor-pointer"
+              className="rounded-full h-24 w-24 cursor-pointer border-4 border-[#48B1DB] object-cover"
               onClick={() => document.getElementById("imageInput")?.click()}
             />
             <input
@@ -108,7 +108,7 @@ const SellerProfile = () => {
       <div className="mt-6">
         <button
           onClick={handleUpdateProfile}
-          className="w-full py-2 px-4 bg-[#48B1DB] text-white rounded-md hover:bg-blue-700 transition"
+          className="w-full py-2 px-4 bg-[#48B1DB] text-white rounded-md  transition"
         >
           Save Profile
         </button>
