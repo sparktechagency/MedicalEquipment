@@ -345,7 +345,7 @@ const OrderListUser: React.FC = () => {
         )}
 
         <Link
-          href={`/SellerPortaldashboard/${selectedProduct?.key}`}
+          href={`/OrderListUser/${selectedProduct?.key}`}
           className="flex justify-end"
         >
           <button
