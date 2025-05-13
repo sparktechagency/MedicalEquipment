@@ -13,6 +13,7 @@ import { LuPackageOpen } from "react-icons/lu";
 import { TbUserDollar } from "react-icons/tb";
 
 import Logo from "@/assets/logo/Logo.png";
+import { TiShoppingCart } from "react-icons/ti";
 interface NavItemProps {
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // assuming icon is an SVG component
@@ -58,7 +59,7 @@ const SidebarSellerPortal = () => {
   const navItems = [
     { href: "/SellerPortalDashboard", icon: MdDashboard, label: "Dashboard" },
     { href: "/UserMyBid", icon: LuPackageOpen, label: "Product" },
-    { href: "/UserOrderList", icon: TbUserDollar, label: "Order List"},
+    { href: "/OrderListUser", icon: TiShoppingCart, label: "Order List"},
     { href: "/BidUserlist", icon: TbUserDollar, label: "Past Bid User" },
     { href: "/Earnings", icon: BiDollarCircle, label: "Earnings" },
     { href: "/Settings", icon: RiSettingsLine, label: "Settings" },

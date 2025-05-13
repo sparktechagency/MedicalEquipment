@@ -4,10 +4,11 @@ import { Modal, Space, Table, ConfigProvider, DatePicker, Spin } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import dayjs, { Dayjs } from "dayjs";
+import Link from "next/link";
 
 // Define the type for the product data
 interface Product {
-  key: string;
+  key: number;
   sl: string;
   productName: string;
   category: string;
@@ -16,8 +17,8 @@ interface Product {
   timeAndDate: string;
   useImage: string;
   userName: string;
-  email: string; // Added email field
-  status: string; // Added status field
+  email: string;
+  status: string;
 }
 
 // Define the type for the selected product in the modal
@@ -30,13 +31,13 @@ const CATEGORIES = [
   "Monitoring Systems",
 ] as const;
 
-const BidUserlist: React.FC = () => {
+const OrderListUser: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] =
     useState<SelectedProduct | null>(null);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [activeTab, setActiveTab] = useState<string>(CATEGORIES[0]);
-  const [loading, setLoading] = useState<boolean>(true); // Loading state for table
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -56,12 +57,10 @@ const BidUserlist: React.FC = () => {
     setActiveTab(tab);
   };
 
-  // Simulate API fetch for initial data
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Simulate API delay
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setLoading(false);
       } catch (error) {
@@ -70,13 +69,12 @@ const BidUserlist: React.FC = () => {
       }
     };
     fetchData();
-  }, []); // Run once on mount
+  }, []);
 
-  // Memoized filtered data with dataSource defined inside
   const filteredData = useMemo(() => {
     const dataSource: Product[] = [
       {
-        key: "1",
+        key: 1,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
         category: "Diagnostic Equipment",
@@ -86,23 +84,23 @@ const BidUserlist: React.FC = () => {
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Progress",
       },
       {
-        key: "2",
+        key: 2,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
-        category: "Diagnostic Equipment",
+        category: "Surgical Tools",
         price: "$800",
         bidPrice: "$800",
         timeAndDate: "11 Oct 24, 11:10 PM",
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Progress",
       },
       {
-        key: "3",
+        key: 3,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
         category: "Diagnostic Equipment",
@@ -112,49 +110,49 @@ const BidUserlist: React.FC = () => {
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Pending",
       },
       {
-        key: "4",
+        key: 4,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
-        category: "Diagnostic Equipment",
+        category: "Surgical Tools",
         price: "$800",
         bidPrice: "$800",
         timeAndDate: "11 Oct 24, 11:10 PM",
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Pending",
       },
       {
-        key: "5",
+        key: 5,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
-        category: "Diagnostic Equipment",
+        category: "Monitoring Systems",
         price: "$800",
         bidPrice: "$800",
         timeAndDate: "11 Oct 24, 11:10 PM",
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Pending",
       },
       {
-        key: "6",
+        key: 6,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
-        category: "Diagnostic Equipment",
+        category: "Surgical Tools",
         price: "$800",
         bidPrice: "$800",
         timeAndDate: "11 Oct 24, 11:10 PM",
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Complete",
       },
       {
-        key: "7",
+        key: 7,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
         category: "Diagnostic Equipment",
@@ -164,10 +162,10 @@ const BidUserlist: React.FC = () => {
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Complete",
       },
       {
-        key: "8",
+        key: 8,
         sl: "01",
         productName: "GE Vivid S70 Ultrasound Machine",
         category: "Diagnostic Equipment",
@@ -177,33 +175,7 @@ const BidUserlist: React.FC = () => {
         useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
         userName: "Bashar",
         email: "Support.info@Gmail.Com",
-        status: "WINNER",
-      },
-      {
-        key: "9",
-        sl: "01",
-        productName: "GE Vivid S70 Ultrasound Machine",
-        category: "Diagnostic Equipment",
-        price: "$800",
-        bidPrice: "$800",
-        timeAndDate: "11 Oct 24, 11:10 PM",
-        useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-        userName: "Bashar",
-        email: "Support.info@Gmail.Com",
-        status: "WINNER",
-      },
-      {
-        key: "10",
-        sl: "01",
-        productName: "GE Vivid S70 Ultrasound Machine",
-        category: "Diagnostic Equipment",
-        price: "$800",
-        bidPrice: "$800",
-        timeAndDate: "11 Oct 24, 11:10 PM",
-        useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-        userName: "Bashar",
-        email: "Support.info@Gmail.Com",
-        status: "WINNER",
+        status: "Cancel",
       },
     ];
 
@@ -236,11 +208,29 @@ const BidUserlist: React.FC = () => {
         </div>
       ),
     },
-    { title: "Email", dataIndex: "email", key: "email" }, // Added Email column
+    { title: "Email", dataIndex: "email", key: "email" },
     { title: "Product Name", dataIndex: "productName", key: "productName" },
     { title: "Bid Price", dataIndex: "bidPrice", key: "bidPrice" },
     { title: "Bid Time & Date", dataIndex: "timeAndDate", key: "timeAndDate" },
-    { title: "Status", dataIndex: "status", key: "status" }, // Added Status column
+    {
+      title: "Status",
+      key: "status",
+      render: (_: unknown, record: Product) => (
+        <span
+          className={`px-2 py-1 rounded-full text-white ${
+            record.status === "Progress"
+              ? "bg-orange-500"
+              : record.status === "Pending"
+              ? "bg-yellow-500"
+              : record.status === "Complete"
+              ? "bg-green-500"
+              : "bg-red-500"
+          }`}
+        >
+          {record.status}
+        </span>
+      ),
+    },
     {
       title: "Actions",
       key: "action",
@@ -259,7 +249,7 @@ const BidUserlist: React.FC = () => {
   return (
     <div className="w-full rounded-lg">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="font-semibold text-xl">Bid User List</h2>
+        <h2 className="font-semibold text-xl">User Order List</h2>
         <DatePicker
           onChange={handleDateChange}
           format="DD MMM YY"
@@ -267,7 +257,6 @@ const BidUserlist: React.FC = () => {
         />
       </div>
 
-      {/* Tabs */}
       <div className="flex space-x-3 mb-4">
         {CATEGORIES.map((tab) => (
           <button
@@ -307,7 +296,6 @@ const BidUserlist: React.FC = () => {
         </Spin>
       </ConfigProvider>
 
-      {/* Modal */}
       <Modal
         open={isModalVisible}
         onCancel={handleCancel}
@@ -315,7 +303,7 @@ const BidUserlist: React.FC = () => {
         centered
         title={
           <h1 className="text-center text-xl font-semibold text-gray-500">
-            Bid User List
+            User Order List
           </h1>
         }
       >
@@ -355,9 +343,21 @@ const BidUserlist: React.FC = () => {
             </div>
           </div>
         )}
+
+        <Link
+          href={`/SellerPortaldashboard/${selectedProduct?.key}`}
+          className="flex justify-end"
+        >
+          <button
+            className="bg-[#48B1DB] text-white py-2 px-4 rounded-md"
+            onClick={() => console.log("Cancel")}
+          >
+            Sending Product
+          </button>
+        </Link>
       </Modal>
     </div>
   );
 };
 
-export default BidUserlist;
+export default OrderListUser;
