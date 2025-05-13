@@ -1,5 +1,6 @@
 "use client";
 import PaginationComponent from "@/components/UI/PaginationComponent";
+import Link from "next/link";
 import { useState } from "react";
 
 
@@ -31,33 +32,29 @@ const ListOffAllProducts =() => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow">
-        <div className="p-4 border-b">
-          <h1 className="text-lg font-semibold text-gray-800">
+    <div className="">
+      <div className="">
+        <div className="">
+          <h1 className="text-[20px] font-semibold text-gray-800">
             List of all products ({allProducts.length})
           </h1>
         </div>
         <div>
           {currentProducts.map((product, index) => (
-            <div
+            <Link href="/BidderList"
               key={index}
-              className="flex items-center justify-between p-4 bg-gray-50 border-b"
+              className="flex items-center justify-between border-[#91C5DF]  bg-gray-50 border my-5 rounded-md p-1"
             >
               <div className="flex items-center space-x-4">
                 {/* Replace FaStethoscope with the image */}
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-6 w-6 object-cover"
+                  className="h-16 w-16 object-cover"
                 />
                 <div>
                   <p className="text-gray-800 font-medium">{product.name}</p>
-                  <p className="text-gray-600">${product.price}</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span
+                  <div className="flex space-x-5 items-center"><p className="text-gray-600">${product.price}</p> <p
                   className={`px-3 py-1 rounded-full text-sm ${
                     product.status === "PENDING"
                       ? "bg-gray-200 text-gray-700"
@@ -65,7 +62,11 @@ const ListOffAllProducts =() => {
                   }`}
                 >
                   {product.status}
-                </span>
+                </p></div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                
                 <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                   Edit
                 </button>
@@ -86,10 +87,10 @@ const ListOffAllProducts =() => {
                   </svg>
                 </button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center">
           <PaginationComponent
             currentPage={currentPage}
             totalPages={totalPages}

@@ -102,7 +102,7 @@ const ProductManagement = () => {
   return (
     <section>
         <div className="flex justify-end -mb-10">
-            <Link href="/SellerPortaldashboard/productManagement">
+            <Link href="/ListOffAllProduct">
              <button className="bg-[#48B1DB] text-white py-2 px-4 rounded-md">All Products</button>
             </Link>
         </div>
