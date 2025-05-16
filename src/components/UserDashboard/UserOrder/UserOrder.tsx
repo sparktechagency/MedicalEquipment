@@ -87,7 +87,7 @@ const UserOrder: React.FC = () => {
   return (
     <div className="w-full md:container mx-auto md:px-0 px-1 py-2 space-y-5">
       {/* Tabs */}
-      <div className="flex space-x-3">
+      <div className="md:flex space-y-1 md:space-y-0 md:space-x-3">
         {(["Pending", "Progress", "Complete"] as const).map((tab) => (
           <button
             key={tab}

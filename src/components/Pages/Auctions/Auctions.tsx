@@ -408,7 +408,7 @@ const Auctions = () => {
           </div>
 
           {/* Display filtered items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
             {currentItems.map((item:AuctionItem) => (
               <Link href={`/Auctions/${item.id}`} key={item.id}
                 className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]"
@@ -438,7 +438,7 @@ const Auctions = () => {
                       {item.bids}
                     </p>
                   </div>
-                  <p className="text-xs md:text-sm text-gray-500 mt-1">
+                  <p className="text-xs md:text-sm text-red-500 mt-1">
                     {item.timeRemaining}
                   </p>
                 </div>

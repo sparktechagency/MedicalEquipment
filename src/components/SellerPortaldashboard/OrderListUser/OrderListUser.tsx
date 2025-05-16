@@ -257,7 +257,7 @@ const OrderListUser: React.FC = () => {
         />
       </div>
 
-      <div className="flex space-x-3 mb-4">
+      <div className="space-y-1 md:space-y-0 md:flex md:space-x-3 mb-4">
         {CATEGORIES.map((tab) => (
           <button
             key={tab}
@@ -290,7 +290,7 @@ const OrderListUser: React.FC = () => {
             columns={columns}
             dataSource={filteredData}
             pagination={{ pageSize: 10, position: ["bottomCenter"] }}
-            scroll={{ x: 1000 }}
+            scroll={{ x: 1200 }}
             rowKey="key"
           />
         </Spin>

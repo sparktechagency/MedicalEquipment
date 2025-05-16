@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   return (
-    <header className="fixed w-full top-0 left-0   z-[99999] ">
+    <header className="fixed w-[100%] md:w-full top-0 left-0   z-[99999] ">
       <Navbar />
     </header>
   );

@@ -268,7 +268,7 @@ const BidUserlist: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-3 mb-4">
+      <div className="md:flex space-y-1 md:space-y-0 md:space-x-3 mb-4">
         {CATEGORIES.map((tab) => (
           <button
             key={tab}
@@ -301,7 +301,7 @@ const BidUserlist: React.FC = () => {
             columns={columns}
             dataSource={filteredData}
             pagination={{ pageSize: 10, position: ["bottomCenter"] }}
-            scroll={{ x: 1000 }}
+            scroll={{ x: 1200 }}
             rowKey="key"
           />
         </Spin>

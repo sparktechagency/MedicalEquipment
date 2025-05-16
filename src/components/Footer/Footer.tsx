@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="md:container pt-[30px] md:pt-[60px]">
+    <div className="w-full md:container pt-[30px] md:pt-[60px]">
       <div className="  bg-[#D1EBF6]  text-gray-800 rounded-t-lg mb-2">
         <div className="w-full px-2 md:px-0 py-3 border-t border-b border-gray-200">
           <div className="mx-auto grid md:grid-cols-12 gap-8  md:text-left pt-7">
@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
 
             {/* About Section */}
-            <div className="md:col-span-2 col-span-6">
+            <div className="md:col-span-2 col-span-5 mx-auto  text-center md:text-left">
               <h3 className="font-semibold text-xl mb-4">About Us</h3>
               <ul className="space-y-3">
                 <li>
@@ -48,7 +48,7 @@ const Footer = () => {
             </div>
 
             {/* Legal Section */}
-            <div className="md:col-span-2 col-span-6">
+            <div className="md:col-span-2 col-span-5 mx-auto text-center md:text-left">
               <h3 className="font-semibold text-xl mb-4">Legal</h3>
               <ul className="space-y-3">
                 <li>

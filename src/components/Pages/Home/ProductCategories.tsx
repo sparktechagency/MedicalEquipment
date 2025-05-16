@@ -52,7 +52,7 @@ const ProductCategories = () => {
           alt="Product Categories Background Banner"
           layout="fill"
           objectFit="Devices"
-          className="opacity-10 w-[80%] h-full p-5 md:pl-20"
+          className="opacity-[3%] md:opacity-5  w-[80%] h-full p-5 md:pl-20"
         />
       </div>
     </div>

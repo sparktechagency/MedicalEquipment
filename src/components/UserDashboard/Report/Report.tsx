@@ -14,11 +14,11 @@ const Report = () => {
           className="border-2 border-[#48B1DB] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#48B1DB]"
         ></textarea>
 
-        <div className="flex justify-between space-x-5 md:space-x-10 mx-auto mt-5">
-          <button className="px-10 md:mx-auto  text-[#48B1DB] py-3 rounded-md border-2 border-[#48B1DB] focus:outline-none focus:ring-2 focus:ring-[#48B1DB]">
+        <div className="flex justify-between space-x-2 md:space-x-10 mx-auto mt-5">
+          <button className="px-7 md:px-10 md:mx-auto  text-[#48B1DB] py-3 rounded-md border-2 border-[#48B1DB] focus:outline-none focus:ring-2 focus:ring-[#48B1DB]">
             Cancel
           </button>
-          <button className="px-10 md:mx-auto bg-[#48B1DB] text-white py-3 rounded-md  focus:outline-none focus:ring-2 focus:ring-[#48B1DB]">
+          <button className="px-7 md:px-10 md:mx-auto bg-[#48B1DB] text-white py-3 rounded-md  focus:outline-none focus:ring-2 focus:ring-[#48B1DB]">
             Report
           </button>
         </div>
