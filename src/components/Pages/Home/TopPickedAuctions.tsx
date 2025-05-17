@@ -204,7 +204,10 @@ const TopPickedAuctions = () => {
             <div key={slideIndex} className="flex-none w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {slide.map((item) => (
-                  <div key={item.id} className="bg-gradient-to-b from-[#EEF9FE] to-white rounded-md p-2">
+                  <div
+                    key={item.id}
+                    className="bg-gradient-to-b from-[#EEF9FE] to-white rounded-md p-2"
+                  >
                     <Image
                       width={300}
                       height={250}

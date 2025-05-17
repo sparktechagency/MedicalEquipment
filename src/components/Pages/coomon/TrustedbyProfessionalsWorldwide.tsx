@@ -21,10 +21,12 @@ const TrustedbyProfessionalsWorldwide = () => {
   return (
     <div className="bg-gradient-to-b from-[#ffffff99] via-[#99dfff88] to-[#99dfff88]">
       <h1 className="text-xl sm:text-3xl md:text-5xl font-bold px-3 md:px-0 text-center">
-        <span className="text-[#48B1DB] font-bold">Trusted</span> by Professionals Worldwide
+        <span className="text-[#48B1DB] font-bold">Trusted</span> by
+        Professionals Worldwide
       </h1>
       <p className="text-center px-3 md:px-0 mt-2 sm:text-base md:text-lg">
-        Our platform connects thousands of buyers and sellers in the medical industry. <br /> 
+        Our platform connects thousands of buyers and sellers in the medical
+        industry. <br />
         Here's a look at the impact we've made so far.
       </p>
       <div className="relative w-full h-[100%] md:h-[450px]">
@@ -71,4 +73,3 @@ const TrustedbyProfessionalsWorldwide = () => {
 };
 
 export default TrustedbyProfessionalsWorldwide;
-

@@ -7,7 +7,7 @@ import Variant4 from "@/assets/HeroBannerSection/Variant4.png"; // imported imag
 
 const HeroBannerSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const items = [Variant1, Variant2, Variant3, Variant4,];
+  const items = [Variant1, Variant2, Variant3, Variant4];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,8 +30,13 @@ const HeroBannerSection = () => {
             <div className="md:container mx-auto flex justify-start items-center h-full">
               <div className="w-full md:w-[60%] lg:w-[50%]  p-4 md:p-0 rounded-md">
                 <h1 className="text-xl  font-light text-white leading-tight md:text-2xl lg:text-3xl">
-                  <span className="font-bold md:text-4xl lg:text-5xl">Empowering</span> Healthcare with the Right Equipment,
-                  <span className="font-bold md:text-4xl lg:text-5xl">Right Where It Matters Most</span>
+                  <span className="font-bold md:text-4xl lg:text-5xl">
+                    Empowering
+                  </span>{" "}
+                  Healthcare with the Right Equipment,
+                  <span className="font-bold md:text-4xl lg:text-5xl">
+                    Right Where It Matters Most
+                  </span>
                 </h1>
                 <p className="text-white text-sm md:text-base pt-4 pb-6">
                   Trusted platform for hospitals, labs, and individuals to trade
@@ -63,4 +68,3 @@ const HeroBannerSection = () => {
 };
 
 export default HeroBannerSection;
-

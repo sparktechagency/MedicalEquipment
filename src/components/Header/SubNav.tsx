@@ -9,7 +9,7 @@ const SubNav = () => {
         <ul className="flex items-center gap-4">
           {/* Email Link */}
           <li className="flex items-center gap-2 font-semibold">
-            <FaEnvelope className="font-bold size-6"/>
+            <FaEnvelope className="font-bold size-6" />
             <Link href="/" className="">
               example@example.com
             </Link>
@@ -17,7 +17,7 @@ const SubNav = () => {
 
           {/* Phone Link */}
           <li className="flex items-center gap-2 font-semibold">
-            <PiHeadsetDuotone  className="font-bold size-6"/>
+            <PiHeadsetDuotone className="font-bold size-6" />
             <Link href="/about-us" className="">
               999
             </Link>

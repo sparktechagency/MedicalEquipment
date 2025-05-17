@@ -244,8 +244,8 @@ const Auctions = () => {
   }
 
   function closeDrawer() {
-      setIsSidebarOpen(false);
-    }
+    setIsSidebarOpen(false);
+  }
 
   function handleSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -310,32 +310,31 @@ const Auctions = () => {
               <p className="text-base">All Categories</p>
 
               <ul className="my-4 bg-[#EEF9FE] px-2">
-            {categories.map((item, index) => (
-              <li
-                key={index}
-                className="py-2 cursor-pointer"
-                onClick={() => {
-                    setSelectedCategory(item.name)
-                    closeDrawer();
-                  }}
-              >
-                <span
-                  className={`${
-                    selectedCategory === item.name
-                      ? "font-semibold text-[#48B1DB]"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {item.name}
-                </span>
-              </li>
-            ))}
-          </ul>
+                {categories.map((item, index) => (
+                  <li
+                    key={index}
+                    className="py-2 cursor-pointer"
+                    onClick={() => {
+                      setSelectedCategory(item.name);
+                      closeDrawer();
+                    }}
+                  >
+                    <span
+                      className={`${
+                        selectedCategory === item.name
+                          ? "font-semibold text-[#48B1DB]"
+                          : "text-gray-600"
+                      }`}
+                    >
+                      {item.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="flex-1" onClick={closeDrawer}></div>
           </div>
         )}
-
 
         {/* Main Content with Search */}
         <div className="w-full">
@@ -409,8 +408,10 @@ const Auctions = () => {
 
           {/* Display filtered items */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 lg:gap-12 mt-2 px-2 md:px-0">
-            {currentItems.map((item:AuctionItem) => (
-              <Link href={`/Auctions/${item.id}`} key={item.id}
+            {currentItems.map((item: AuctionItem) => (
+              <Link
+                href={`/Auctions/${item.id}`}
+                key={item.id}
                 className="bg-[#FFFFFF] rounded-md shadow-md mx-auto w-full max-w-[350px] md:max-w-[400px]"
               >
                 <Image

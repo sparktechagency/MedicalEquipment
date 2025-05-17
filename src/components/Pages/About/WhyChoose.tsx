@@ -10,7 +10,8 @@ const WhyChooseUs = () => {
       <h2 className="text-3xl font-bold text-center md:mb-16">
         Why <span className="text-[#48B1DB] font-bold">Choose</span> Us
       </h2>
-      <br /><br /> 
+      <br />
+      <br />
       {/* Grid structure with responsive adjustments */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* First Item: Trusted by medical professionals */}

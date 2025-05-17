@@ -19,7 +19,7 @@ const userDashboard = ({ children }: { children: React.ReactNode }) => {
 
           {/* Main content */}
           <div className="top-2 col-span-11 md:col-span-9 lg:col-span-10 md:px-2 px-5">
-            <UserProfilesImage/>
+            <UserProfilesImage />
             {children}
           </div>
         </div>

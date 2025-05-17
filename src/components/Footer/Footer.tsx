@@ -21,7 +21,9 @@ const Footer = () => {
               </Link>
               <div className="text-center mt-1">
                 <h2 className="text-lg font-semibold">MST & ASSOCIATES</h2>
-                <h1>Your medical equipment <br /> specialists</h1>
+                <h1>
+                  Your medical equipment <br /> specialists
+                </h1>
               </div>
             </div>
 
@@ -52,10 +54,7 @@ const Footer = () => {
               <h3 className="font-semibold text-xl mb-4">Legal</h3>
               <ul className="space-y-3">
                 <li>
-                  <Link
-                    href="/terms-condition"
-                    className="hover:text-gray-600"
-                  >
+                  <Link href="/terms-condition" className="hover:text-gray-600">
                     Terms of Service
                   </Link>
                 </li>

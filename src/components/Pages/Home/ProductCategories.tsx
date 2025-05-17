@@ -1,5 +1,3 @@
-
-
 "use client";
 import ProductCategoriesImage from "@/assets/banner/ProductCategories.png";
 
@@ -60,4 +58,3 @@ const ProductCategories = () => {
 };
 
 export default ProductCategories;
-

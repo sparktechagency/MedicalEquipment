@@ -184,10 +184,10 @@ const ProductPage = () => {
             <Button
               onClick={() => {
                 Swal.fire({
-                    title: "Thank You!",
-                    text: "Your bid has been successfully submitted",
-                    icon: "success"
-                  });
+                  title: "Thank You!",
+                  text: "Your bid has been successfully submitted",
+                  icon: "success",
+                });
                 setIsReviewModalOpen(false); // Close the review modal after submission
               }}
               className="w-1/3 bg-[#48B1DB] text-white"

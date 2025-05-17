@@ -1,4 +1,4 @@
-import aboutImage from "@/assets/about/image6.png";  
+import aboutImage from "@/assets/about/image6.png";
 
 const AboutHero = () => {
   return (
@@ -21,10 +21,9 @@ const AboutHero = () => {
         <div
           className="w-full lg:w-[50%] p-4 h-full md:h-[50vh]"
           style={{
-            backgroundImage: `url(${aboutImage.src})`,  // Accessing src properly
+            backgroundImage: `url(${aboutImage.src})`, // Accessing src properly
             backgroundPosition: "left",
             backgroundRepeat: "no-repeat",
-           
           }}
         >
           <h1 className="text-left text-[40px] font-semibold mb-5">
@@ -48,13 +47,17 @@ const AboutHero = () => {
         <div className="md:flex items-center justify-between md:space-x-10">
           <div className="">
             <div className="border-b-4 border-[#48B1DB] rounded-md bg-[#EEF9FE] p-4 my-5">
-              <h1 className="text-lg font-semibold text-center pb-5">Integrity</h1>
+              <h1 className="text-lg font-semibold text-center pb-5">
+                Integrity
+              </h1>
               <h1 className="text-center">
                 We stand by our commitment to honesty and <br /> transparency.
               </h1>
             </div>
             <div className="border-b-4 border-[#48B1DB] rounded-md bg-[#EEF9FE] p-4 my-5">
-              <h1 className="text-lg font-semibold text-center pb-5">Support</h1>
+              <h1 className="text-lg font-semibold text-center pb-5">
+                Support
+              </h1>
               <h1 className="text-center">
                 We stand by our commitment to honesty and <br /> transparency.
               </h1>
@@ -62,15 +65,20 @@ const AboutHero = () => {
           </div>
           <div className="md:mt-28">
             <div className="border-b-4 border-[#48B1DB] rounded-md bg-[#EEF9FE] p-4 my-5">
-              <h1 className="text-lg font-semibold text-center pb-5">Quality</h1>
+              <h1 className="text-lg font-semibold text-center pb-5">
+                Quality
+              </h1>
               <h1 className="text-center">
                 We stand by our commitment to honesty and <br /> transparency.
               </h1>
             </div>
             <div className="border-b-4 border-[#48B1DB] rounded-md bg-[#EEF9FE] p-4 my-5">
-              <h1 className="text-lg font-semibold text-center pb-5">Innovation</h1>
+              <h1 className="text-lg font-semibold text-center pb-5">
+                Innovation
+              </h1>
               <h1 className="text-center">
-                We embrace new technology that enhances <br /> modern healthcare.
+                We embrace new technology that enhances <br /> modern
+                healthcare.
               </h1>
             </div>
           </div>

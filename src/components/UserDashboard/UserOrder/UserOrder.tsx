@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import ProductCard from "./ProductCard";
 
@@ -94,7 +94,11 @@ const UserOrder: React.FC = () => {
             onClick={() => setActiveTab(tab)}
             className={`
               px-4 py-2 rounded-full font-medium transition
-              ${activeTab === tab ? "bg-[#48B1DB] text-white" : "bg-[#EEF9FE] text-[#48B1DB] border border-[#48B1DB] hover:bg-blue-50"}
+              ${
+                activeTab === tab
+                  ? "bg-[#48B1DB] text-white"
+                  : "bg-[#EEF9FE] text-[#48B1DB] border border-[#48B1DB] hover:bg-blue-50"
+              }
             `}
           >
             {tab}
@@ -107,7 +111,9 @@ const UserOrder: React.FC = () => {
         {filtered.length > 0 ? (
           filtered.map((p) => <ProductCard key={p.id} {...p} />)
         ) : (
-          <p className="text-center text-gray-500">No items in &quot;{activeTab}&quot;</p>
+          <p className="text-center text-gray-500">
+            No items in &quot;{activeTab}&quot;
+          </p>
         )}
       </div>
     </div>

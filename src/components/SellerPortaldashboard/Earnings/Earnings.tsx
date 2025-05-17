@@ -212,7 +212,7 @@ const Earnings: React.FC = () => {
               pageSize: 10, // You can adjust the page size
               position: ["bottomCenter"], // Option to position the pagination
             }}
-            scroll={{ x: 1200 }}
+            scroll={{ x: 1000 }}
           />
         </ConfigProvider>
       </div>

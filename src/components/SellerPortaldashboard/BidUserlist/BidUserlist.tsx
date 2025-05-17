@@ -301,7 +301,7 @@ const BidUserlist: React.FC = () => {
             columns={columns}
             dataSource={filteredData}
             pagination={{ pageSize: 10, position: ["bottomCenter"] }}
-            scroll={{ x: 1200 }}
+            scroll={{ x: 100 }}
             rowKey="key"
           />
         </Spin>
