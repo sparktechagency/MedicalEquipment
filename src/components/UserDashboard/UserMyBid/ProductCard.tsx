@@ -25,7 +25,10 @@ const  ProductCard =({ product }: { product: Product }) =>{
         />
       </div>
       <div className="p-4 flex-1 relative">
-        <h3 className="font-bold llg:text-lg">{title}</h3>
+        <div className='md:flex space-y-3 md:space-y-0 justify-between'>
+         <h3 className="font-bold llg:text-lg">{title}</h3>
+           <h1 className="text-[#48B1DB] ">Contact : 0197******</h1>
+        </div>
         <p className="text-gray-600 text-sm mt-2">{description}</p>
         <div className="mt-4">
           <span className="text-xl font-semibold">${price}</span>
