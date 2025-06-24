@@ -1,5 +1,5 @@
-const decodedToken = (token: string) => {
-  console.log(token);
-};
+import { jwtDecode } from "jwt-decode";
 
-export default decodedToken;
+export const verifyToken = (token: string) => {
+  return jwtDecode(token);
+};
