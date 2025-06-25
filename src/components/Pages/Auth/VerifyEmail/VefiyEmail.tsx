@@ -11,7 +11,7 @@ const VerifyEmail: React.FC = () => {
     const router = useRouter();
   const onFinish = (values: OTPFormValues) => {
     console.log("OTP Verification Data: ", values);
-    // Assuming the OTP verification is successful
+    
     router.push("/reset-password");
   };
 
