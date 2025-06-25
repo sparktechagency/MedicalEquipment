@@ -7,14 +7,16 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://d7003.sobhoy.com/api/v1",
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token;
+      // Extract the token correctly by parsing the stringified token object
+      const token = (getState() as RootState).auth.token?.replace(/['"]+/g, "");
+      console.log(token);
       if (token) {
-        headers.set("authorization", `${token}`);
+        headers.set("authorization", `Bearer ${token}`);
       }
 
       return headers;
     },
   }),
-  tagTypes: ["recipe", "user", "follower", "rating", "comment", "order"],
+  tagTypes: ["recipe", "user", "product", "rating", "comment", "order"],
   endpoints: () => ({}),
 });

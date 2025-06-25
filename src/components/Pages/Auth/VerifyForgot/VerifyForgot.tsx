@@ -24,7 +24,7 @@ const VerifyForgot: React.FC = () => {
      console.log(res)
       if (res?.code === 200) {
         message.success("OTP verified successfully.");
-        router.push("/login");
+        router.push(`/reset-password?email=${email}`);
       }
     } catch (error) {
       console.error(error);

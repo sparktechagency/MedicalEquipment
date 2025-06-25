@@ -46,7 +46,7 @@ const Register: React.FC = () => {
       // Check for successful registration and redirect to verify-email page
       if (res?.code === 201) {
         // email pass query params
-        router.push(`/verify-email?email=${values.email}`);
+        router.push(`/verify-user?email=${values.email}`);
         message.success("Registration successful.");
       } else {
         message.error("Registration failed. Please try again."); // Handle unexpected responses
