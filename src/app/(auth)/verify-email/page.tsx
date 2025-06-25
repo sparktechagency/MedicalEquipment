@@ -1,9 +1,9 @@
 import VerifyEmail from "@/components/Pages/Auth/VerifyEmail/VefiyEmail";
 import React from "react";
 export const metadata = {
-  title: "Verify Email | Medical Equipment",
-  description: "This is the verify email page for our application",
-  keywords: ["verify Email", "page", "example"],
+  title: "Verify User | Medical Equipment",
+  description: "This is the verify User page for our application",
+  keywords: ["verify User", "page", "example"],
 };
 const VerifyEmailPage = () => {
   return <VerifyEmail />;

@@ -8,7 +8,7 @@ interface OTPFormValues {
   code: string;
 }
 
-const VerifyEmail: React.FC = () => {
+const VerifyForgot: React.FC = () => {
   const router = useRouter();
   const [otp] = useVerifyEmailMutation();
   const searchParams = useSearchParams();
@@ -79,4 +79,4 @@ const VerifyEmail: React.FC = () => {
   );
 };
 
-export default VerifyEmail;
+export default VerifyForgot;

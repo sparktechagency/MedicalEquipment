@@ -13,9 +13,8 @@ const ForgotPassword: React.FC = () => {
   const router = useRouter();
 
   const onFinish = (values: LoginFormValues) => {
-    console.log(values);
+    router.push(`/verify-email?email=${values.email}`);
     message.success("OTP has been sent to your email.");
-    router.push("/verify-email");
   };
 
   return (
