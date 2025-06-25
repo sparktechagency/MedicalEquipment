@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Form, Checkbox, Select } from "antd";
+import { Form, Checkbox, Select, message } from "antd";
 import InputComponent from "@/components/UI/InputComponent";
 import { FaLock, FaUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -8,19 +8,36 @@ import { GiPhone } from "react-icons/gi";
 
 // import imageLogo from "@/assets/logo/Logo.png";
 import { FaLocationDot } from "react-icons/fa6";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import { useRouter } from "next/router";
 
 interface RegisterFormValues {
-  fullName: string;
+  name: string;
   email: string;
   password: string;
-  confirmPassword: string;
-  remember: boolean;
+  phone: number;
+  role: string;
+  address: string;
 }
 
 const Register: React.FC = () => {
-  const onFinish = (values: RegisterFormValues) => {
+  const router = useRouter();
+  const [register, { isLoading }] = useRegisterMutation();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  const onFinish = async(values: RegisterFormValues) => {
     const registrationData = { ...values };
-    console.log("Registration Data: ", registrationData);
+    try {
+      const res = await register(registrationData).unwrap();
+      //  console.log(res)
+      if (res?.code === 200) {
+        message.success(`${res?.message}`);
+        router?.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -36,18 +53,10 @@ const Register: React.FC = () => {
         <div className="w-full max-w-[450px] mx-auto px-4 md:px-0">
           <div className="bg-[#BADAEB40] shadow-lg rounded-lg ">
             <div className="px-6 py-3 md:px-8 lg:px-10">
-              {/* <Image
-                src={imageLogo}
-                alt="Logo"
-                width={150}
-                height={150}
-                className="mx-auto"
-              /> */}
-
               <Form layout="vertical" onFinish={onFinish} className="space-y-3">
                 <Form.Item
                   label={<span className=""> Name</span>}
-                  name="fullName"
+                  name="name"
                   rules={[
                     {
                       required: true,
@@ -63,7 +72,7 @@ const Register: React.FC = () => {
 
                 <Form.Item
                   label={<span>Set Your Roll</span>}
-                  name="SetRoll"
+                  name="role"
                   rules={[
                     {
                       required: true,
@@ -79,7 +88,7 @@ const Register: React.FC = () => {
 
                 <Form.Item
                   label={<span className=""> Phone</span>}
-                  name="number"
+                  name="phone"
                   rules={[
                     { required: true, message: "Please enter your Phone" },
                   ]}
@@ -123,7 +132,7 @@ const Register: React.FC = () => {
                     icon={FaLock}
                   />
                 </Form.Item>
-                <Form.Item name="remember" valuePropName="checked">
+                <Form.Item  valuePropName="checked">
                   <Checkbox className="">
                     I accept the Terms of Service and Privacy Policy.
                   </Checkbox>

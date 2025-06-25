@@ -24,12 +24,12 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
   },
-  middleware: (getDefaultMiddlewares) =>
-    getDefaultMiddlewares({
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(baseApi.middleware),
+    }).concat(baseApi.middleware), // Make sure to concatenate the baseApi.middleware properly
 });
 
 export type RootState = ReturnType<typeof store.getState>;
