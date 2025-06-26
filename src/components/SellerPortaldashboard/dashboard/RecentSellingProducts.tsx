@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState,  } from "react";
 import { Modal, Space, Table, ConfigProvider } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
-
+import { useGetTransactionRatioQuery } from "@/redux/features/dashboard/dashboardApi";
 
 // Define the type for the product data
 interface Product {
@@ -10,7 +10,6 @@ interface Product {
   productName: string;
   category: string;
   price: string;
-  bidPrice: string;
   timeAndDate: string;
 }
 
@@ -19,7 +18,6 @@ interface SelectedProduct {
   productName?: string;
   category?: string;
   price?: string;
-  bidPrice?: string;
   timeAndDate?: string;
 }
 
@@ -27,54 +25,29 @@ const RecentSellingProducts: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<SelectedProduct | null>(null);
 
-  // Example dataSource
-  const dataSource: Product[] = [
-    {
-      key: "1",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-    },
-    {
-      key: "2",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-    },
-    {
-      key: "3",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-    },
-    {
-      key: "4",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-    },
-    {
-      key: "5",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-    },
-  ];
+  const { data } = useGetTransactionRatioQuery({});
+  interface ProductAttribute {
+    _id: string;
+    title: string;
+    category: {
+      name: string;
+    };
+    price: number;
+    date: string;
+  }
+
+  interface TransactionRatioData {
+    attributes: ProductAttribute[];
+  }
+
+  const dataSource: Product[] = (data as TransactionRatioData | undefined)?.attributes.map((item: ProductAttribute, index: number) => ({
+    key: item._id,
+    sl: (index + 1).toString(),
+    productName: item.title,
+    category: item.category.name,
+    price: item.price.toString(),
+    timeAndDate: new Date(item.date).toLocaleDateString(),
+  })) || [];
 
   const showModal = (product: Product) => {
     setSelectedProduct(product);
@@ -106,11 +79,6 @@ const RecentSellingProducts: React.FC = () => {
       title: "Price",
       dataIndex: "price",
       key: "price",
-    },
-    {
-      title: "Bid Price",
-      dataIndex: "bidPrice",
-      key: "bidPrice",
     },
     {
       title: "Time & Date",
@@ -181,10 +149,6 @@ const RecentSellingProducts: React.FC = () => {
             <div className="flex justify-between py-3 border-t-2 border-gray-400">
               <p>Price :</p>
               <p>{selectedProduct?.price || "N/A"}</p>
-            </div>
-            <div className="flex justify-between py-3 border-t-2 border-gray-400">
-              <p>Bid Price:</p>
-              <p>{selectedProduct?.bidPrice || "N/A"}</p>
             </div>
             <div className="flex justify-between py-3 border-t-2 border-gray-400">
               <p>Time & Date :</p>

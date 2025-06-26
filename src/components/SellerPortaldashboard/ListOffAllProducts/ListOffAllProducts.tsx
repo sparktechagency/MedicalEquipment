@@ -76,7 +76,7 @@ const ListOfAllProducts = () => {
 
       <div>
         {currentProducts.map((product) => (
-          <div
+          <Link href={`/ListOffAllProduct/BidderList/${product.id}`}
             key={product.id}
             className="flex items-center justify-between border-[#91C5DF] bg-gray-50 border my-5 rounded-md p-1"
           >
@@ -136,7 +136,7 @@ const ListOfAllProducts = () => {
                 </svg>
               </button>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

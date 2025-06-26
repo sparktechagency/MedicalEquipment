@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Modal, Space, Table, ConfigProvider } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useGetBitAllQuery } from "@/redux/features/ProductManagement/ProductManagement";
 
 // Define the type for the product data
 interface Product {
@@ -30,8 +32,11 @@ interface SelectedProduct {
 
 const BidderLists: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] =
-    useState<SelectedProduct | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<SelectedProduct | null>(null);
+
+  const {id} = useParams();
+  const {data} = useGetBitAllQuery(id);
+  console.log(data);
 
   // Updated dataSource with the new image URL
   const dataSource: Product[] = [
