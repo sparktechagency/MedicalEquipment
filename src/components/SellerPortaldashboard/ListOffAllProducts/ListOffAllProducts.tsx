@@ -6,6 +6,7 @@ import { message, Pagination } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 interface Product {
   _id: string;
@@ -37,7 +38,13 @@ const ListOfAllProducts = () => {
     try {
       const res = await deleteProduct(id).unwrap();
       if (res.code === 200) {
-        message.success("Product deleted successfully");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product deleted successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
         refetch(); // Refresh the product list after deletion
       }
     } catch (error) {

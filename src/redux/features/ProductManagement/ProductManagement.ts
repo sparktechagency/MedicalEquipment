@@ -18,6 +18,13 @@ const ProductManagementApi = baseApi.injectEndpoints({
       }),
       providesTags: ["product"],
     }),
+    getCategoryAll: builder.query({
+      query: () => ({
+        url: `/category`,
+        method: "GET",
+      }),
+      providesTags: ["product"],
+    }),
     getBitAll: builder.query({
       query: (id) => ({
         url: `/bid/product/${id}`,
@@ -56,4 +63,5 @@ export const {
   useDeleteProductMutation,
   useCreateProductMutation,
   useGetBitAllQuery,
+  useGetCategoryAllQuery
 } = ProductManagementApi;

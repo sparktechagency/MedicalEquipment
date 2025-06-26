@@ -1,5 +1,5 @@
 import Register from '@/components/Pages/Auth/Register/Register'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export const metadata = {
     title: 'Register | Medical Equipment',
@@ -7,7 +7,11 @@ export const metadata = {
     keywords: ['registration', 'page', 'example']
 }
 const RegisterPage = () => {
-  return <Register/>
+  return <div>
+  <Suspense fallback={<div>Loading...</div>}>
+   <Register />
+</Suspense>
+</div>
 }
 
 export default RegisterPage

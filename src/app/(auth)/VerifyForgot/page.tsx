@@ -1,5 +1,5 @@
 import VerifyForgot from "@/components/Pages/Auth/VerifyForgot/VerifyForgot";
-import React from "react";
+import React, { Suspense } from "react";
 export const metadata = {
   title: "Verify Email | Medical Equipment",
   description: "This is the verify Email page for our application",
@@ -8,7 +8,9 @@ export const metadata = {
 const Page = () => {
  return (
  <div>
-    <VerifyForgot />
+ <Suspense fallback={<div>Loading...</div>}>
+  <VerifyForgot />
+</Suspense>
  </div>
  );
 };
