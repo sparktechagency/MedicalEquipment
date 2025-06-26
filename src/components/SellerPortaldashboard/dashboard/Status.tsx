@@ -4,7 +4,7 @@ import { BsFillClipboard2CheckFill } from "react-icons/bs";
 
 const Status = () => {
   const {data} = useGetDashboardStatusQuery({});
-  console.log(data?.attributes  )
+  // console.log(data?.attributes  )
   const Alldata = [
     { title: "Total Product", value: data?.attributes?.totalProduct},
     { title: "Total Sold", value: data?.attributes?.totalSoldProduct },

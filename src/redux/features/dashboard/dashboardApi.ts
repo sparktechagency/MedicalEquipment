@@ -18,7 +18,7 @@ const dashboardApi = baseApi.injectEndpoints({
     }),
     getIncomeRatio: builder.query({
       query: () => ({
-        url: "/dashboard/admin/transaction_ratio",
+        url: "/dashboard/seller/income_ratio",
         method: "GET",
       }),
       transformResponse: (response) => response?.data,

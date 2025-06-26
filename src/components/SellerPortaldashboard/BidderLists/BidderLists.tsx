@@ -35,67 +35,39 @@ const BidderLists: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<SelectedProduct | null>(null);
 
   const {id} = useParams();
-  const {data} = useGetBitAllQuery(id);
-  console.log(data);
+  const {data} = useGetBitAllQuery(id);  // Fetch data dynamically from API
+  const allData = data?.data?.attributes || [];  // Default to empty array if no data
 
-  // Updated dataSource with the new image URL
-  const dataSource: Product[] = [
-    {
-      key: "1",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Imaging Devices",
-      price: "$200", // Placeholder since not provided in image
-      bidPrice: "$800",
-      timeAndDate: "11 Oct 24, 11:10PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-      userName: "Bashar",
-    },
-    {
-      key: "2",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Imaging Devices",
-      price: "$200", // Placeholder
-      bidPrice: "$700",
-      timeAndDate: "11 Oct 24, 11:10PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-      userName: "Bashar",
-    },
-    {
-      key: "3",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Imaging Devices",
-      price: "$200", // Placeholder
-      bidPrice: "$600",
-      timeAndDate: "11 Oct 24, 11:10PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-      userName: "Bashar",
-    },
-    {
-      key: "4",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Imaging Devices",
-      price: "$200", // Placeholder
-      bidPrice: "$500",
-      timeAndDate: "11 Oct 24, 11:10PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-      userName: "Bashar",
-    },
-    {
-      key: "5",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Imaging Devices",
-      price: "$200", // Placeholder
-      bidPrice: "$400",
-      timeAndDate: "11 Oct 24, 11:10PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png",
-      userName: "Bashar",
-    },
-  ];
+  // Mapping dynamic data to fit the Product interface
+  interface Author {
+    image?: string;
+    name: string;
+  }
+
+  interface ProductData {
+    title: string;
+    category: string;
+    price: number;
+    date: string;
+  }
+
+  interface BidItem {
+    product: ProductData;
+    bidAmount: number;
+    author: Author;
+  }
+
+  const dataSource: Product[] = (allData as BidItem[]).map((item: BidItem, index: number): Product => ({
+    key: String(index + 1),
+    sl: String(index + 1), // Sequential index as serial number
+    productName: item.product.title,
+    category: item.product.category,  // Assuming category is a string or id, update as necessary
+    price: `$${item.product.price}`,  // Assuming price is a number
+    bidPrice: `$${item.bidAmount}`,  // Assuming bidAmount is a number
+    timeAndDate: new Date(item.product.date).toLocaleString(),
+    useImage: item.author.image || "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // Default image if none available
+    userName: item.author.name,
+  }));
 
   const showModal = (product: Product) => {
     setSelectedProduct(product);
