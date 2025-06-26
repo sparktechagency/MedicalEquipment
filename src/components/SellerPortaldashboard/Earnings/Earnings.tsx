@@ -1,8 +1,10 @@
 "use client";
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect } from "react";
 import { Modal, Space, Table, ConfigProvider } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import { useGetAllEarningsQuery } from "@/redux/features/Earnings/Earnings";
 
 // Define the type for the product data
 interface Product {
@@ -30,90 +32,30 @@ interface SelectedProduct {
 
 const Earnings: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] =
-    useState<SelectedProduct | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<SelectedProduct | null>(null);
+  const { data } = useGetAllEarningsQuery({});
+  const [dataSource, setDataSource] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);  // Loading state
 
-  // Example dataSource with useImage field and userName field
-  const dataSource: Product[] = [
-    {
-      key: "1",
-      sl: "01",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "John Doe", // User name
-    },
-    // Add more products as necessary
-    {
-      key: "2",
-      sl: "02",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "Jane Smith", // User name
-    },
-    {
-      key: "3",
-      sl: "03",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "John Doe", // User name
-    },
-    {
-      key: "4",
-      sl: "04",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "Jane Smith", // User name
-    },
-    {
-      key: "5",
-      sl: "05",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "John Doe", // User name
-    },
-    {
-      key: "6",
-      sl: "06",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "Jane Smith", // User name
-    },
-    {
-      key: "7",
-      sl: "07",
-      productName: "GE Vivid S70 Ultrasound Machine",
-      category: "Diagnostic Equipment",
-      price: "$200",
-      bidPrice: "$210",
-      timeAndDate: "11 Oct 24, 11:10 PM",
-      useImage: "https://i.ibb.co/0C5x0zk/Ellipse-1232.png", // User image URL
-      userName: "John Doe", // User name
-    },
-  ];
+  useEffect(() => {
+    if (data?.data?.attributes) {
+      const mappedData = data.data.attributes.map((item: any, index: number) => ({
+        key: item._id,
+        sl: (index + 1).toString(),
+        productName: item.product.title,
+        category: item.product.description,
+        price: `$${item.amount}`,
+        bidPrice: `$${item.amount + 10}`,
+        timeAndDate: new Date(item.createdAt).toLocaleString(),
+        useImage: item.author?.imageUrl 
+                  ? `${process.env.NEXT_PUBLIC_API_URL}/${item.author?.imageUrl}` 
+                  : "/defaultImage.jpg", // Fallback image path
+        userName: item.author?.name || "Anonymous",
+      }));
+      setDataSource(mappedData);
+      setLoading(false);
+    }
+  }, [data]);
 
   const showModal = (product: Product) => {
     setSelectedProduct(product);
@@ -139,7 +81,7 @@ const Earnings: React.FC = () => {
           <Image
             width={30}
             height={30}
-            src={record.useImage} // Dynamic image URL from data
+            src={record.useImage} // This should now have a valid URL or relative path
             alt="User Image"
             style={{ width: "30px", height: "30px", borderRadius: "50%" }}
           />
@@ -190,31 +132,35 @@ const Earnings: React.FC = () => {
     <div className="w-full col-span-full md:col-span-6 rounded-lg">
       <h2 className="font-semibold py-3 text-[20px]">Earnings</h2>
       <div className="bg-[#EEF9FE]">
-        <ConfigProvider
-          theme={{
-            token: {
-              colorBgContainer: "#EEF9FE",
-              colorPrimary: "#1890ff",
-            },
-            components: {
-              Table: {
-                headerBg: "#48B1DB",
-                headerColor: "#000000",
-                headerBorderRadius: 2,
+        {loading ? (
+          <div>Loading...</div>  // Show loading state
+        ) : (
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgContainer: "#EEF9FE",
+                colorPrimary: "#1890ff",
               },
-            },
-          }}
-        >
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            pagination={{
-              pageSize: 10, // You can adjust the page size
-              position: ["bottomCenter"], // Option to position the pagination
+              components: {
+                Table: {
+                  headerBg: "#48B1DB",
+                  headerColor: "#000000",
+                  headerBorderRadius: 2,
+                },
+              },
             }}
-            scroll={{ x: 1000 }}
-          />
-        </ConfigProvider>
+          >
+            <Table
+              columns={columns}
+              dataSource={dataSource}
+              pagination={{
+                pageSize: 10,
+                position: ["bottomCenter"],
+              }}
+              scroll={{ x: 1000 }}
+            />
+          </ConfigProvider>
+        )}
       </div>
 
       {/* Modal */}

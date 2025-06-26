@@ -44,9 +44,12 @@ const BidderLists: React.FC = () => {
     name: string;
   }
 
+  // Updated ProductData interface to handle category as object or string
   interface ProductData {
     title: string;
-    category: string;
+    category: {
+      name: string;
+    } | string;  // Category can be either an object with name property or a string
     price: number;
     date: string;
   }
@@ -61,7 +64,9 @@ const BidderLists: React.FC = () => {
     key: String(index + 1),
     sl: String(index + 1), // Sequential index as serial number
     productName: item.product.title,
-    category: item.product.category,  // Assuming category is a string or id, update as necessary
+    category: typeof item.product.category === 'object' 
+      ? item.product.category.name 
+      : item.product.category,  // Handle both object and string types
     price: `$${item.product.price}`,  // Assuming price is a number
     bidPrice: `$${item.bidAmount}`,  // Assuming bidAmount is a number
     timeAndDate: new Date(item.product.date).toLocaleString(),
