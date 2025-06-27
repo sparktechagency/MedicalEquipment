@@ -1,4 +1,3 @@
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
@@ -11,16 +10,15 @@ import { BiDollarCircle } from "react-icons/bi";
 import { RiSettingsLine } from "react-icons/ri";
 import { FaSignOutAlt } from "react-icons/fa";
 import { LuPackageOpen } from "react-icons/lu";
-
+import { TiShoppingCart } from "react-icons/ti";
 
 import Logo from "@/assets/logo/Logo.png";
-import { TiShoppingCart } from "react-icons/ti";
 
 interface NavItemProps {
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   label: string;
-  onClick?: () => void; // Added optional onClick
+  onClick?: () => void;
 }
 
 const NavItem: React.FC<NavItemProps> = ({ href, icon: Icon, label, onClick }) => {
@@ -33,7 +31,7 @@ const NavItem: React.FC<NavItemProps> = ({ href, icon: Icon, label, onClick }) =
       <Link
         href={href}
         aria-current={isActive(href) ? "page" : undefined}
-        onClick={onClick} // Call onClick if provided
+        onClick={onClick}
         className={`flex items-center space-x-2 px-2 py-2 rounded-md transition-colors ${
           isActive(href)
             ? "text-white bg-[#48B1DB] hover:bg-[#48B1DB]"
@@ -50,15 +48,35 @@ const NavItem: React.FC<NavItemProps> = ({ href, icon: Icon, label, onClick }) =
 const SidebarSellerPortal = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
 
   const showDrawer = () => setDrawerOpen(true);
   const closeDrawer = () => setDrawerOpen(false);
   const showLogoutModal = () => setLogoutModalVisible(true);
   const handleLogoutCancel = () => setLogoutModalVisible(false);
-  const handleLogoutConfirm = () => {
+
+  const handleLogoutConfirm = async () => {
+  try {
+    setIsLoggingOut(true);
+
+    // Clear all auth-related data
+    ['persist:auth', 'token', 'user', 'authToken', 'userInfo'].forEach((key) => {
+      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
+    });
+
     setLogoutModalVisible(false);
-    console.log("User logged out");
-  };
+    window.location.href = '/';
+  } catch (error) {
+    console.error('Logout error:', error);
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = '/';
+  } finally {
+    setIsLoggingOut(false);
+  }
+};
 
   const navItems = [
     { href: "/SellerPortalDashboard", icon: MdDashboard, label: "Dashboard" },
@@ -114,7 +132,7 @@ const SidebarSellerPortal = () => {
                     <NavItem
                       key={item.href}
                       {...item}
-                      onClick={closeDrawer} // Close drawer on nav click
+                      onClick={closeDrawer}
                     />
                   ))}
                 </div>
@@ -127,10 +145,11 @@ const SidebarSellerPortal = () => {
                     closeDrawer();
                   }}
                   className="w-full text-left"
+                  disabled={isLoggingOut}
                 >
                   <div className="flex items-center space-x-2 px-4 text-red-500">
                     <FaSignOutAlt className="text-xl" />
-                    <span>Logout</span>
+                    <span>{isLoggingOut ? 'Logging out...' : 'Logout'}</span>
                   </div>
                 </button>
               </div>
@@ -161,11 +180,12 @@ const SidebarSellerPortal = () => {
         <div className="mt-4">
           <button
             onClick={showLogoutModal}
-            className="w-full text-left bg-[#48B1DB] px-3 py-2 rounded-md text-white hover:bg-primary-dark"
+            className="w-full text-left bg-[#48B1DB] px-3 py-2 rounded-md text-white hover:bg-primary-dark disabled:opacity-50"
+            disabled={isLoggingOut}
           >
             <div className="flex items-center space-x-2">
               <FaSignOutAlt className="text-xl text-red-400" />
-              <span>Logout</span>
+              <span>{isLoggingOut ? 'Logging out...' : 'Logout'}</span>
             </div>
           </button>
         </div>
@@ -178,20 +198,23 @@ const SidebarSellerPortal = () => {
         onCancel={handleLogoutCancel}
         centered
         width={300}
+        confirmLoading={isLoggingOut}
         footer={[
           <button
             key="cancel"
             onClick={handleLogoutCancel}
             className="border border-red-500 text-red-500 px-4 py-1 rounded hover:bg-red-100"
+            disabled={isLoggingOut}
           >
             No
           </button>,
           <button
             key="confirm"
             onClick={handleLogoutConfirm}
-            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 ml-2"
+            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 ml-2 disabled:opacity-50"
+            disabled={isLoggingOut}
           >
-            Yes
+            {isLoggingOut ? 'Logging out...' : 'Yes'}
           </button>,
         ]}
       >

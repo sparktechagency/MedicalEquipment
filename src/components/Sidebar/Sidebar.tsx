@@ -13,10 +13,40 @@ const Sidebar = () => {
 
   const showLogoutModal = () => setLogoutModalVisible(true);
   const handleLogoutCancel = () => setLogoutModalVisible(false);
+
+  // Logout function
+  const handleLogout = () => {
+    try {
+      // Remove all auth related data
+      localStorage.removeItem('persist:auth');
+      localStorage.removeItem('persist:root');
+      
+      // Clear all localStorage items that start with 'persist:'
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('persist:')) {
+          localStorage.removeItem(key);
+        }
+      });
+      
+      // Force page reload and redirect
+      window.location.replace('/');
+      
+      // Backup method if replace doesn't work
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+      
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Fallback - clear everything and redirect
+      localStorage.clear();
+      window.location.href = '/';
+    }
+  };
+
   const handleLogoutConfirm = () => {
     setLogoutModalVisible(false);
-    // Add logout logic here, such as clearing auth tokens or redirecting
-    console.log("User logged out");
+    handleLogout();
   };
 
   return (
@@ -24,22 +54,40 @@ const Sidebar = () => {
       {/* Mobile Drawer Button */}
       <button
         type="button"
-        className="md:hidden block absolute top-0 left-5" // Ensuring the button is visible with appropriate padding
+        className="md:hidden block fixed top-4 left-4 z-30 bg-white p-2 rounded-full shadow-lg"
         onClick={showDrawer}
       >
-        <MenuOutlined className="text-3xl text-[#48B1DB]" />{" "}
-        {/* Ensuring the icon is large and visible */}
+        <MenuOutlined className="text-2xl text-[#48B1DB]" />
       </button>
 
       {/* Custom Sidebar (Drawer) for Mobile */}
       {drawerOpen && (
-        <div
-          className="fixed top-12 left-0 z-20 w-1/2 py-5 bg-[#EEF9FE] border border-[#EEF9FE] p-5 rounded-md transition-transform transform ease-in-out duration-300"
-          style={{
-            transform: drawerOpen ? "translateX(0)" : "translateX(-100%)",
-          }}
-        >
-          <div className="  space-y-4 bg-[#EEF9FE]">
+        <>
+          {/* Overlay */}
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-10"
+            onClick={closeDrawer}
+          ></div>
+          
+          {/* Drawer */}
+          <div
+            className="fixed top-0 left-0 z-20 w-2/3 h-full py-5 bg-[#EEF9FE] border border-[#EEF9FE] p-5 transition-transform transform ease-in-out duration-300 overflow-y-auto"
+            style={{
+              transform: drawerOpen ? "translateX(0)" : "translateX(-100%)",
+            }}
+          >
+            {/* Close button */}
+            <div className="flex justify-end mb-4">
+              <button 
+                onClick={closeDrawer}
+                className="text-gray-500 hover:text-gray-700 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            </div>
+            
+            <div className="space-y-4 bg-[#EEF9FE]">
             {/* Full height and background color */}
             <div className="py-2">
               <Link href="/userProfile">
@@ -93,7 +141,7 @@ const Sidebar = () => {
               </div>
             </button>
           </div>
-        </div>
+        </>
       )}
 
       {/* Desktop Sidebar */}
@@ -138,12 +186,11 @@ const Sidebar = () => {
 
       {/* Logout Confirmation Modal */}
       <Modal
-        visible={logoutModalVisible}
+        open={logoutModalVisible}
         onOk={handleLogoutConfirm}
         onCancel={handleLogoutCancel}
         centered
         width={300} // Set the width here (in pixels)
-        height={300} // Set the height here (in pixels), if necessary
         footer={[
           <button
             key="cancel"
