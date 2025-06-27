@@ -142,6 +142,8 @@ const Navbar = () => {
             </Link>
           )}
 
+          
+
           {user && (
             <Link href="#">
               <h1 className="bg-[#E5F6FD] p-[7px] md:p-[10px] rounded-full text-[#48B1DB]">
