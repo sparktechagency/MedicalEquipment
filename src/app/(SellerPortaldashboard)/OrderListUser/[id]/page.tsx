@@ -1,74 +1,153 @@
-import Image from "next/image";
+'use client';
 
-const page = () => {
+import React from 'react';
+import { ArrowLeft } from 'lucide-react';
+import { useParams, useRouter } from 'next/navigation';
+
+import moment from 'moment';
+import { message } from 'antd';
+import Image from 'next/image';
+import { useDeliveryNowMutation, useDeliveryProductMutation, useGetOrdersSingleQuery } from '@/redux/features/Orders/Orders';
+import Swal from 'sweetalert2';
+
+const OrdersDetails: React.FC = () => {
+  const params = useParams();
+  const router = useRouter();
+  const id = params?.id as string;
+
+  const { data } = useGetOrdersSingleQuery(id);
+  const order = data?.data?.attributes;
+
+  const bidId = order?.bid?._id;
+  const bid = order?.bid || {};
+  const product = order?.product || {};
+  const author = bid?.author || {};
+
+  const [sendingProduct] = useDeliveryProductMutation({});
+  const [deliveryNow] = useDeliveryNowMutation({});
+
+  const formatCurrency = (amount: number): string => `$${amount}`;
+
+  const handleSendingProduct = async (bidId: string) => {
+    try {
+      const res = await sendingProduct(bidId);
+      
+      if (res.data?.code === 200) {
+         Swal.fire({
+                  icon: "success",
+                  title: "Success",
+                  text: "Product sending success",
+                });
+      }
+    } catch (error) {
+      console.error(error);
+      message.error('Something went wrong while sending the product');
+    }
+  };
+
+  const handleDeliveryNow = async (bidId: string) => {
+    try {
+      const res = await deliveryNow(bidId);
+      if ( res.data?.code === 200) {
+         Swal.fire({
+                  icon: "success",
+                  title: "Success",
+                  text: "Delivery Success",
+                });
+      }
+    } catch (error) {
+      console.error(error);
+      message.error('Something went wrong while processing delivery');
+    }
+  };
+
   return (
-    <div>
-      <div className="max-w-3xl mx-auto p-6 rounded-lg my-10">
-        <div className="flex items-center space-x-4">
-          <div className="flex-shrink-0">
-            <Image
-              src="https://i.ibb.co/0C5x0zk/Ellipse-1232.png"
-              alt="User Image"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold">Mr. Bashar Islam</h2>
-            <p className="text-gray-500">User Order Details</p>
-          </div>
-        </div>
-        <div className="mt-6">
-          <div className="space-y-4">
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Name</span>
-              <span className="text-gray-800">Bashar Islam</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Email</span>
-              <span className="text-gray-800">demomail@gmail.com</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Phone Number</span>
-              <span className="text-gray-800">028232949834</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Product Name</span>
-              <span className="text-gray-800">
-                GE Vivid 570 Ultrasound Machine
-              </span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Bid Price</span>
-              <span className="text-gray-800">$800</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Bid Time & Date</span>
-              <span className="text-gray-800">11 Oct 24, 11:00 PM</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Location</span>
-              <span className="text-gray-800">New York, US</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Order Number</span>
-              <span className="text-gray-800">08</span>
-            </div>
-            <div className="flex justify-between border-b">
-              <span className="text-gray-600">Delivery Method</span>
-              <span className="text-gray-800">Standard Delivery</span>
-            </div>
-          </div>
-        </div>
-        <div className="mt-6 flex justify-end">
-          <button className=" py-2 px-4 bg-[#48B1DB] text-white rounded-md hover:bg-blue-700 transition">
-            Delivery Now
+    <div className="min-h-screen bg-gray-50 p-4 mt-5 rounded-md">
+      <div className="max-w-2xl mx-auto bg-white rounded-lg">
+        {/* Header */}
+        <div className="flex items-center gap-3 p-6">
+          <button
+            className="text-gray-400 hover:text-gray-600"
+            onClick={() => router.back()}
+          >
+            <ArrowLeft size={20} />
           </button>
+          <h1 className="text-lg font-medium text-gray-900">User Order Details</h1>
+        </div>
+
+        {/* User Profile Section */}
+        <div className="p-6 border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <div className="relative w-16 h-16 bg-teal-600 rounded-full overflow-hidden">
+              <Image
+                src={
+                  author?.image
+                    ? `${process.env.NEXT_PUBLIC_BASE_URL}/${author.image}`
+                    : ""
+                }
+                alt={author?.name || 'User'}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-lg font-medium text-gray-900">
+                {author?.name || 'Unknown User'}
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        {/* Order Details */}
+        <div className="p-6 space-y-0">
+          {[
+            { label: 'Bid Amount', value: formatCurrency(bid?.bidAmount || 0) },
+            { label: 'Product Name', value: product?.title || 'N/A' },
+            { label: 'Product Description', value: product?.description || 'N/A' },
+            { label: 'Product Price', value: formatCurrency(product?.price || 0) },
+            {
+              label: 'Bid Time & Date',
+              value: bid?.createdAt
+                ? moment(bid.createdAt).format('YYYY-MM-DD')
+                : 'N/A',
+            },
+            { label: 'Status', value: order?.bid?.status || 'N/A' },
+            { label: 'Payment Status', value: bid?.paymentStatus || 'N/A' },
+            { label: 'Location', value: author?.address || 'N/A' },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="flex justify-between items-center py-4 border-b border-gray-100"
+            >
+              <span className="text-gray-600 font-medium">{item.label}</span>
+              <span className="text-gray-900 font-semibold">{item.value}</span>
+            </div>
+          ))}
+
+          {/* Status Action Button */}
+          <div className="pt-6 flex justify-end space-x-4">
+            {order?.bid?.status === 'progress' && bidId && (
+              <button
+                onClick={() => handleSendingProduct(bidId)}
+                className="px-6 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-600 text-white font-medium"
+              >
+                Sending Product
+              </button>
+            )}
+            {order?.bid?.status === 'shipped' && bidId && (
+              <button
+                onClick={() => handleDeliveryNow(bidId)}
+                className="px-6 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-600 text-white font-medium"
+              >
+                Delivery Now
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default OrdersDetails;
+
