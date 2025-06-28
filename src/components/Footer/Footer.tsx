@@ -71,6 +71,14 @@ const Footer = () => {
                     Seller Agreement
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/userAgreement"
+                    className="hover:text-gray-600"
+                  >
+                    User Agreement
+                  </Link>
+                </li>
               </ul>
             </div>
 

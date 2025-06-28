@@ -5,7 +5,7 @@ const Page = () => {
     <div>
       <div className="w-full bg-[linear-gradient(91.26deg,_#48B1DB_3.55%,_#C4E6F3_99.57%)]">
         <h1 className="text-center text-[40px] font-bold pt-10  text-white">
-          Seller Agreement
+          user Agreement
         </h1>
         <h1 className="text-center text-[16px] pt-7 pb-12">
           Have questions or need assistance? We're here to help. Reach out to us
@@ -15,7 +15,7 @@ const Page = () => {
       </div>
       <div className="md:container mx-auto px-5 md:px-36">
         <div className="bg-[#EEF9FE] rounded-lg p-5 -mt-7">
-          <h1 className="text-[16px] font-bold py-2">Seller Agreement</h1>
+          <h1 className="text-[16px] font-bold py-2">User Agreement</h1>
           <p>
             {" "}
             Effective Date: 23April, 2025 <br /> We value your privacy and are

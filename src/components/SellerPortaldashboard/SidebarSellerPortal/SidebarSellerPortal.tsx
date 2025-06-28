@@ -193,36 +193,52 @@ const SidebarSellerPortal = () => {
 
       {/* Logout Modal */}
       <Modal
-        open={logoutModalVisible}
-        onOk={handleLogoutConfirm}
-        onCancel={handleLogoutCancel}
-        centered
-        width={300}
-        confirmLoading={isLoggingOut}
-        footer={[
-          <button
-            key="cancel"
-            onClick={handleLogoutCancel}
-            className="border border-red-500 text-red-500 px-4 py-1 rounded hover:bg-red-100"
-            disabled={isLoggingOut}
-          >
-            No
-          </button>,
-          <button
-            key="confirm"
-            onClick={handleLogoutConfirm}
-            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 ml-2 disabled:opacity-50"
-            disabled={isLoggingOut}
-          >
-            {isLoggingOut ? 'Logging out...' : 'Yes'}
-          </button>,
-        ]}
+  open={logoutModalVisible}
+  onCancel={handleLogoutCancel}
+  centered
+  width={380}
+  footer={null}
+  closeIcon={false}
+>
+  <div className="text-center p-4">
+    <div className="mx-auto mb-4 w-14 h-14 rounded-full bg-red-100 flex items-center justify-center">
+      <svg
+        className="w-6 h-6 text-red-600"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
       >
-        <div>
-          <h1 className="text-2xl font-semibold">Logout</h1>
-          <p className="mb-2">Are you sure you want to log out?</p>
-        </div>
-      </Modal>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5"
+        />
+      </svg>
+    </div>
+    <h1 className="text-xl font-semibold text-gray-800 mb-2">Confirm Logout</h1>
+    <p className="text-sm text-gray-600 mb-6">
+      Are you sure you want to log out? You will need to log in again to access your account.
+    </p>
+    <div className="flex justify-center gap-4">
+      <button
+        onClick={handleLogoutCancel}
+        className="px-6 py-2 rounded-md border border-gray-300 hover:bg-gray-100 transition"
+        disabled={isLoggingOut}
+      >
+        Cancel
+      </button>
+      <button
+        onClick={handleLogoutConfirm}
+        className="px-6 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition disabled:opacity-50"
+        disabled={isLoggingOut}
+      >
+        {isLoggingOut ? 'Logging out...' : 'Logout'}
+      </button>
+    </div>
+  </div>
+</Modal>
+
     </div>
   );
 };

@@ -1,120 +1,158 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
 
-const SellerProfile = () => {
-  // Default data for the profile
-  const [fullName, setFullName] = useState("Hisham");
-  const [email, setEmail] = useState("emily@gmail.com");
-  const [phoneNumber, setPhoneNumber] = useState("019732897638");
-  const [address, setAddress] = useState("New York, US");
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+import { Button, Form, Input } from 'antd';
+import { useEffect, useRef, useState, ChangeEvent } from 'react';
+import { IoChevronBack, IoCameraOutline } from 'react-icons/io5';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import Image from 'next/image';
+import { useGetUserQuery, useUpdateUserMutation } from '@/redux/features/Profile/Profile';
 
-  // Handle image upload
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+const EditSellerProfile: React.FC = () => {
+  const { data, refetch } = useGetUserQuery({});
+  const user = data?.attributes?.user;
+
+  const [form] = Form.useForm();
+  const router = useRouter();
+
+  const [updateProfileInfo, { isLoading }] = useUpdateUserMutation();
+
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    user?.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}` : null
+  );
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (user) {
+      form.setFieldsValue({
+        firstName: user.name || '',
+        phoneNumber: user.phone || '',
+        address: user.address || '',
+      });
+    }
+  }, [user, form]);
+
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfileImage(imageUrl);
+      const newImageUrl = URL.createObjectURL(file);
+      setImageFile(file);
+      setImageUrl(newImageUrl);
     }
   };
 
-  // Handle form submission (for example, update the data)
-  const handleUpdateProfile = () => {
-    console.log("Profile updated:", { fullName, email, phoneNumber, address });
+  const handleDivClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const onFinish = async (values: any) => {
+    const formData = new FormData();
+    formData.append('name', values.firstName);
+    formData.append('phone', values.phoneNumber);
+    formData.append('address', values.address);
+
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+
+    try {
+      const response = await updateProfileInfo(formData);
+      if ('data' in response && response.data) {
+        toast.success('Profile updated successfully!');
+        router.push('/sellerProfile');
+        refetch();
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      toast.error('Something went wrong while updating your profile.');
+    }
   };
 
   return (
-    <div className="max-w-3xl my-10 md:my-20 mx-auto bg-white p-8 rounded-lg shadow-lg">
-      <div className="flex items-center space-x-4 border-b pb-4 mb-6">
-        <div className="flex-shrink-0">
-          <div className="relative">
-            {/* Profile Image */}
-            <Image
-              src={profileImage || "https://i.ibb.co/0C5x0zk/Ellipse-1232.png"}
-              alt="User Image"
-              width={100} // Set a fixed width for the image
-              height={100} // Set a fixed height for the image
-              className="rounded-full h-24 w-24 cursor-pointer border-4 border-[#48B1DB] object-cover"
-              onClick={() => document.getElementById("imageInput")?.click()}
-            />
+    <div className="w-full">
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <div className="flex items-center my-6">
+          <button onClick={() => router.push('/sellerProfile')}>
+            <IoChevronBack className="text-xl" />
+          </button>
+          <h1 className="text-2xl font-semibold ml-2">Edit Information</h1>
+        </div>
+      </div>
+
+      {/* Profile Form */}
+      <div className="w-full md:w-[95%] lg:w-[50%] p-7 px-14 rounded-md bg-[#E5F6FD] h-full md:mt-1 mx-auto mb-5">
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={onFinish}
+          className="w-full space-y-6 mt-5"
+        >
+          {/* Profile Picture */}
+          <div className="flex justify-center mb-6">
+            <div onClick={handleDivClick} className="cursor-pointer relative">
+              {imageUrl ? (
+                <div className="relative w-[130px] h-[130px] rounded-full overflow-hidden border">
+                  <Image
+                    src={imageUrl}
+                    alt="Profile Preview"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="border rounded-3xl p-5 text-white bg-gray-300">
+                  <IoCameraOutline size={60} />
+                </div>
+              )}
+            </div>
             <input
               type="file"
-              id="imageInput"
-              className="hidden"
-              onChange={handleImageUpload}
+              ref={fileInputRef}
+              onChange={handleImageChange}
+              accept="image/*"
+              style={{ display: 'none' }}
             />
           </div>
-        </div>
-        <div>
-          <h2 className="text-2xl font-semibold">{fullName}</h2>
-          <p className="text-gray-500">Admin</p>
-        </div>
-      </div>
 
-      {/* Show form only when editing */}
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="fullName" className="text-gray-600">
-            Full Name
-          </label>
-          <input
-            id="fullName"
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-        <div>
-          <label htmlFor="email" className="text-gray-600">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-        <div>
-          <label htmlFor="phoneNumber" className="text-gray-600">
-            Phone Number
-          </label>
-          <input
-            id="phoneNumber"
-            type="text"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-        <div>
-          <label htmlFor="address" className="text-gray-600">
-            Address
-          </label>
-          <input
-            id="address"
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-      </div>
+          {/* Edit Form */}
+          <Form.Item label="User Name" name="firstName">
+            <Input
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+              placeholder="Enter your name"
+            />
+          </Form.Item>
 
-      {/* Edit Profile Button */}
-      <div className="mt-6">
-        <button
-          onClick={handleUpdateProfile}
-          className="w-full py-2 px-4 bg-[#48B1DB] text-white rounded-md  transition"
-        >
-          Save Profile
-        </button>
+          <Form.Item label="Phone Number" name="phoneNumber">
+            <Input
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+              placeholder="Enter your phone number"
+            />
+          </Form.Item>
+
+          <Form.Item label="Address" name="address">
+            <Input
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+              placeholder="Enter your address"
+            />
+          </Form.Item>
+
+          <div className="flex justify-center">
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={isLoading}
+              className="px-5 py-3"
+            >
+              Update Information
+            </Button>
+          </div>
+        </Form>
       </div>
     </div>
   );
 };
 
-export default SellerProfile;
+export default EditSellerProfile;

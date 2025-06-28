@@ -1,100 +1,108 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import Link from 'next/link';
 
-const SellerProfile = () => {
-  // Default data for the profile
-  const [fullName, setFullName] = useState("Hisham");
-  const [email, setEmail] = useState("emily@gmail.com");
-  const [phoneNumber, setPhoneNumber] = useState("019732897638");
-  const [address, setAddress] = useState("New York, US");
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useGetUserQuery } from '@/redux/features/Profile/Profile';
 
-  // Handle form submission (for example, update the data)
-  const handleUpdateProfile = () => {
-    // Logic to update profile data
-    console.log("Profile updated:", { fullName, email, phoneNumber, address });
-  };
+const SellerProfile: React.FC = () => {
+  const { data,  } = useGetUserQuery({});
+      const userData = data?.attributes?.user;
+      const [name , setName] = useState(null)
+      const [email, setEmail] = useState("");
+        const [phone, setPhone] = useState("");
+        const [address, setAddress] = useState("");
+      const [profileImage, setProfileImage] = useState<string | null>(null);
+    
+      useEffect(() => {
+        if (userData) {
+          setEmail(userData.email)
+          setPhone(userData.phone)
+          setAddress(userData.address)
+          setName(userData.name)
+          setProfileImage(
+            userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` : null
+          );
+        }
+      }, [userData]);
 
   return (
-    <div className="max-w-3xl my-10 md:my-20 mx-auto bg-white p-8 rounded-lg shadow-lg">
-      <div className="flex items-center space-x-4 border-b pb-4 mb-6">
-        <div className="flex-shrink-0">
-          <Image
-            src="https://i.ibb.co/0C5x0zk/Ellipse-1232.png"
-            alt="User Image"
-            width={50}
-            height={50}
-            className="rounded-full w-24 h-24 object-cover"
-          />
-        </div>
-        <div>
-          <h2 className="text-2xl font-semibold">{fullName}</h2>
-          <p className="text-gray-500">Admin</p>
+    <div className="w-full lg:px-5">
+      {/* Back Button and Title */}
+      <div className="flex justify-between items-center">
+        <div className="flex gap-4 items-center py-1 md:my-2 lg:my-6">
+          <h1 className="text-2xl font-semibold ">
+            Personal Information
+          </h1>
         </div>
       </div>
-      <div className="space-y-4">
-        <div className="">
-          <label htmlFor="fullName" className="text-gray-600">
-            Full Name
-          </label>
-          <input
-            id="fullName"
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
+
+      {/* Profile Information */}
+      <div className="w-full md:w-[95%] lg:w-[50%] py-5 px-14 rounded-md bg-[#E5F6FD] h-full md:mt-1 mx-auto">
+        {/* Profile Picture */}
+        <div className="rounded-lg flex justify-center items-center flex-col">
+          <div className="relative size-32 rounded-full overflow-hidden border">
+            <Image
+              src={
+                profileImage || ''
+              }
+              alt="Profile"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
-        <div className="">
-          <label htmlFor="email" className="text-gray-600">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-        <div className="">
-          <label htmlFor="phoneNumber" className="text-gray-600">
-            Phone Number
-          </label>
-          <input
-            id="phoneNumber"
-            type="text"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-        <div className="">
-          <label htmlFor="address" className="text-gray-600">
-            Address
-          </label>
-          <input
-            id="address"
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="text-gray-800 border p-2 rounded-md w-full"
-          />
-        </div>
-      </div>
-      <div className="mt-6">
-        <Link href={`/sellerProfile/${1}`}>
-          <button
-            onClick={handleUpdateProfile}
-            className="w-full py-2 px-4 bg-[#48B1DB] text-white rounded-md transition"
-          >
-            Edit Profile
-          </button>
-        </Link>
+
+        {/* Personal Details */}
+        <form className="w-full col-span-full md:col-span-9 space-y-6 md:mt-10">
+          <div className="space-y-1">
+            <label className="block text-sm font-semibold">Name</label>
+            <input
+              type="text"
+              defaultValue={name || ''}
+              readOnly
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="block text-sm font-semibold">Email</label>
+            <input
+              type="email"
+              defaultValue={email}
+              readOnly
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="block text-sm font-semibold">Contact no</label>
+            <input
+              type="text"
+              defaultValue={phone}
+              readOnly
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="block text-sm font-semibold">Address</label>
+            <input
+              type="text"
+              defaultValue={address}
+              readOnly
+              className="w-full rounded-lg px-5 py-2 bg-white outline-none"
+            />
+          </div>
+          <div className="flex justify-center">
+            <Link href={`/sellerProfile/${1}`}>
+              <button className="px-8 py-3 bg-[#48B1DB] text-white rounded-lg">
+                Edit Profile
+              </button>
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
 export default SellerProfile;
+

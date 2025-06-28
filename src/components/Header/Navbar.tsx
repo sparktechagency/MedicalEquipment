@@ -9,6 +9,7 @@ import { Button, Drawer, Dropdown } from "antd";
 import { MenuOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdOutlineNotificationsNone } from "react-icons/md";
+import { useGetUserQuery } from "@/redux/features/Profile/Profile";
 
 // Define user interface
 interface User {
@@ -24,6 +25,22 @@ interface User {
 }
 
 const Navbar = () => {
+
+const { data,  } = useGetUserQuery({});
+  const userData = data?.attributes?.user;
+  const [name , setName] = useState(null)
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (userData) {
+      setName(userData.name)
+      setProfileImage(
+        userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` : null
+      );
+    }
+  }, [userData]);
+
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -100,17 +117,7 @@ const Navbar = () => {
     },
   ];
 
-  // Helper to get avatar URL safely
-  const getAvatarSrc = () => {
-    if (user?.image) {
-      const baseUrl = "https://d7003.sobhoy.com";
-      console.log(baseUrl)
-      if (baseUrl) {
-        return `${baseUrl}/${user.image}`;
-      }
-    }
-    return "";
-  };
+  
 
   return (
     <nav>
@@ -162,14 +169,14 @@ const Navbar = () => {
                 <Image
                   width={500}
                   height={500}
-                  src={getAvatarSrc()}
+                  src={profileImage || "/default-avatar.png"}
                   alt="User avatar"
                   className="w-[50px] h-[50px] border-2 border-[#48B1DB] rounded-full"
                   priority
                 />
                 <div className="hidden lg:block">
                   <p className="text-sm font-medium text-gray-900 capitalize">
-                    {user.name}
+                    {name}
                   </p>
                   <p className="text-xs text-gray-500 capitalize">
                     {user.role}
@@ -208,14 +215,14 @@ const Navbar = () => {
               <Image
                 width={10}
                 height={10}
-                src={getAvatarSrc()}
+                src={profileImage || "/default-avatar.png"}
                 alt="User avatar"
                 className="w-[50px] h-[50px] border-2 border-[#48B1DB] rounded-full"
                 priority
               />
               <div>
                 <p className="font-medium text-gray-900 capitalize">
-                  {user.name}
+                  {name}
                 </p>
                 <p className="text-sm text-gray-500 capitalize">
                   {user.role}
