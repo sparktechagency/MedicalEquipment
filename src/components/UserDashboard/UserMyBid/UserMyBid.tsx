@@ -1,53 +1,30 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
 import ProductCard from "./ProductCard";
+import { useGetBidAllQuery } from "@/redux/features/UserBid/UserBid";
 
 const UserMyBid = () => {
-  const productsData = [
-    {
-      id: 1,
-      type: "bid",
-      title: "GE Vivid S70 Ultrasound Machine",
-      description:
-        "Advanced cardiovascular ultrasound system with crystal-clear imaging and intuitive workflow. Combines high performance with portability for efficient diagnostics anytime, anywhere.",
-      price: 200,
-      myBidAmount: 210,
-      previousBidAmount: 205,
-      bidTime: "2024-10-11T23:10:00Z",
-      location: "New York, US",
-      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
-    },
-    {
-      id: 2,
-      type: "win",
-      title: "GE Vivid S70 Ultrasound Machine",
-      description:
-        "Advanced cardiovascular ultrasound system with crystal-clear imaging and intuitive workflow. Combines high performance with portability for efficient diagnostics anytime, anywhere.",
-      price: 200,
-      myBidAmount: 210,
-      previousBidAmount: 205,
-      bidTime: "2024-10-11T23:10:00Z",
-      location: "New York, US",
-      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
-    },
-    {
-      id: 3,
-      type: "bid",
-      title: "Philips EPIQ 7 Ultrasound Machine",
-      description:
-        "Premium ultrasound system offering high-end imaging performance and workflow efficiency.",
-      price: 250,
-      myBidAmount: 260,
-      previousBidAmount: 255,
-      bidTime: "2024-10-12T10:00:00Z",
-      location: "Los Angeles, US",
-      imageUrl: "https://i.ibb.co.com/bjzn3zKW/Rectangle-3.png",
-    },
-  ];
+  const { data } = useGetBidAllQuery({});
 
+  const bidData = data?.data?.attributes?.products;
+  console.log(bidData);
+  
+  // State to handle the current filter ('bid' or 'win')
   const [filter, setFilter] = useState("bid");
-  const filteredProducts = productsData.filter((p) => p.type === filter);
+
+  // Function to filter the products based on the selected filter
+  const filteredProducts = bidData?.filter((product: any) => {
+    if (filter === "bid") {
+      // Show all bid products
+      return true; // No condition to filter, all products will show
+    }
+    if (filter === "win" && product?.isWinner === true) {
+      // Show only products that are won
+      return true;
+    }
+    return false; // Default return, when none of the conditions are met
+  });
 
   return (
     <div className="w-full px-1 md:px-0 md:container mx-auto py-6">
@@ -55,9 +32,7 @@ const UserMyBid = () => {
         <button
           onClick={() => setFilter("bid")}
           className={`${
-            filter === "bid"
-              ? "bg-[#48B1DB] text-white"
-              : "bg-[#C9EDFB] text-gray-700"
+            filter === "bid" ? "bg-[#48B1DB] text-white" : "bg-[#C9EDFB] text-gray-700"
           } px-4 py-2 rounded`}
         >
           Bid
@@ -65,20 +40,20 @@ const UserMyBid = () => {
         <button
           onClick={() => setFilter("win")}
           className={`${
-            filter === "win"
-              ? "bg-[#48B1DB] text-white"
-              : "bg-[#C9EDFB] text-gray-700"
+            filter === "win" ? "bg-[#48B1DB] text-white" : "bg-[#C9EDFB] text-gray-700"
           } px-4 py-2 rounded`}
         >
           Win
         </button>
       </div>
+
       <h2 className="text-xl font-semibold mb-4">
-        Products ({filteredProducts.length})
+        Products ({filteredProducts?.length})
       </h2>
+
       <div>
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {filteredProducts?.map((products: any) => (
+          <ProductCard key={products._id} products={products} />
         ))}
       </div>
     </div>

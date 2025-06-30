@@ -119,16 +119,6 @@ const Sidebar = () => {
                 </div>
               </Link>
             </div>
-            <div className="py-2">
-              <Link href="/Report">
-                <div
-                  className="flex items-center space-x-2"
-                  onClick={closeDrawer}
-                >
-                  <span>Report</span>
-                </div>
-              </Link>
-            </div>
             <button
               onClick={() => {
                 showLogoutModal();
