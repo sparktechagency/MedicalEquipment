@@ -1,21 +1,19 @@
 import { baseApi } from "@/redux/api/baseApi";
-
-
-const Orders = baseApi.injectEndpoints({
+const OrderListUser = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getOrdersAll: builder.query({
       query: () => ({
         url: `/bid/order`,
         method: "GET",
       }),
-      providesTags: ["product"]
+      providesTags: ["product"],
     }),
     getOrdersSingle: builder.query({
       query: (id) => ({
         url: `/bid/order/${id}`,
         method: "GET",
       }),
-      providesTags: ["product"]
+      providesTags: ["product"],
     }),
     deliveryProduct: builder.mutation({
       query: (id) => ({
@@ -39,10 +37,10 @@ const Orders = baseApi.injectEndpoints({
   }),
 });
 
-export const { 
+export const {
   useGetOrdersAllQuery,
   useGetOrdersSingleQuery,
   useUpdateOrdersMutation,
   useDeliveryProductMutation,
   useDeliveryNowMutation,
-} = Orders;
+} = OrderListUser;

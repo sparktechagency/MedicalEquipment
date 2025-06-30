@@ -7,7 +7,7 @@ import { useParams, useRouter } from 'next/navigation';
 import moment from 'moment';
 import { message } from 'antd';
 import Image from 'next/image';
-import { useDeliveryNowMutation, useDeliveryProductMutation, useGetOrdersSingleQuery } from '@/redux/features/Orders/Orders';
+import { useDeliveryNowMutation, useDeliveryProductMutation, useGetOrdersSingleQuery } from '@/redux/features/OrderListUser/OrderListUser';
 import Swal from 'sweetalert2';
 
 const OrdersDetails: React.FC = () => {

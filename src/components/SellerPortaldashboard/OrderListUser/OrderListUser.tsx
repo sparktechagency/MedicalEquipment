@@ -6,7 +6,7 @@ import { AiFillEye } from 'react-icons/ai';
 import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
-import { useGetOrdersAllQuery } from '@/redux/features/Orders/Orders';
+import { useGetOrdersAllQuery } from '@/redux/features/OrderListUser/OrderListUser';
 
 
 
