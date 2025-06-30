@@ -4,7 +4,10 @@ import Link from "next/link";
 import { MenuOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 
+
 const Sidebar = () => {
+
+  
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
 
@@ -155,13 +158,6 @@ const Sidebar = () => {
           <Link href="/UserOrder">
             <div className="flex items-center space-x-2" onClick={closeDrawer}>
               <span>Order</span>
-            </div>
-          </Link>
-        </div>
-        <div className="py-5">
-          <Link href="/Report">
-            <div className="flex items-center space-x-2" onClick={closeDrawer}>
-              <span>Report</span>
             </div>
           </Link>
         </div>

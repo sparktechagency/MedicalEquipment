@@ -62,7 +62,7 @@ const  ProductCard =({ products }: { products: any }) =>{
          }
 
       {productIsWinner === true && paymentStatus === 'paid' && (
-          <Link href={`/Report?id=${products?.product?._id}`} className="md:absolute md:top-4 md:right-4 text-red-400   rounded-md">
+          <Link href={`/Report?id=${products?._id}`} className="md:absolute md:top-4 md:right-4 text-red-400   rounded-md">
             <TbMessageReportFilled size={40} />
           </Link>
         )}

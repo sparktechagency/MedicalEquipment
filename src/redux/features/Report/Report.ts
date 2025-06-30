@@ -5,8 +5,8 @@ import { baseApi } from "@/redux/api/baseApi";
 const Report = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     ReportCreate: builder.mutation({
-      query: (data) => ({
-        url: "Report",
+      query: ({ id, data }) => ({
+        url: `/report/create/${id}`,
         method: "POST",
         body: data,
       }),
