@@ -161,10 +161,10 @@ const Sidebar = () => {
             </div>
           </Link>
         </div>
-        <div className="pt-20 pb-2 mt-auto">
+        <div className="pt-20 pb-5 mt-auto">
           <button onClick={showLogoutModal} className="w-full text-left">
             <div className="flex items-center space-x-2">
-              <span>Logout</span>
+              <span className="text-red-400 font-semibold">Logout</span>
             </div>
           </button>
         </div>

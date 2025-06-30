@@ -1,9 +1,10 @@
 import { baseApi } from "@/redux/api/baseApi";
-const UserBid = baseApi.injectEndpoints({
+
+const OrderUsesr = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getBidAll: builder.query({
+    getOrderAll: builder.query({
       query: () => ({
-        url: `/bid/self`,
+        url: `/bid/my_order`,
         method: "GET",
       }),
       providesTags: ["product"],
@@ -12,5 +13,5 @@ const UserBid = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetBidAllQuery,
-} = UserBid;
+  useGetOrderAllQuery
+} = OrderUsesr;
