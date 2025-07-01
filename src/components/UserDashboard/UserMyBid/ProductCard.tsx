@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import moment from 'moment';
-import { TbMessageReportFilled } from "react-icons/tb";
 import Link from 'next/link';
+import { MdReport } from 'react-icons/md';
 const  ProductCard =({ products }: { products: any }) =>{
   const { title, description, price, images } = products?.product;
   const { address,} = products?.product?.author;
@@ -63,7 +63,7 @@ const  ProductCard =({ products }: { products: any }) =>{
 
       {productIsWinner === true && paymentStatus === 'paid' && (
           <Link href={`/Report?id=${products?._id}`} className="md:absolute md:top-4 md:right-4 text-red-400   rounded-md">
-            <TbMessageReportFilled size={40} />
+            <MdReport size={40} />
           </Link>
         )}
 
