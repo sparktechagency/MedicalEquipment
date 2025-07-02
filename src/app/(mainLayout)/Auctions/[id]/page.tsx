@@ -4,20 +4,47 @@ import Image from "next/image";
 import { Modal, Input, Button } from "antd";
 import Swal from "sweetalert2";
 import { useParams } from "next/navigation";
-import { useGetProductSinglesQuery } from "@/redux/features/Auctions/Auctions";
+import { useCreateBitMutation, useGetProductSinglesQuery } from "@/redux/features/Auctions/Auctions";
 import moment from "moment";
 
 const ProductPage = () => {
-  const {id} = useParams();
-  console.log(id);
-  const {data} = useGetProductSinglesQuery(id)
- const AllData = data?.data?.attributes;
- console.log(AllData)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bidAmount, setBidAmount] = useState("");
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-  const [isClient, setIsClient] = useState(false); // Track if the page is rendered on the client side
+  const [isClient, setIsClient] = useState(false); 
+
+
+  const {id} = useParams();
+  console.log(id);
+  const {data} = useGetProductSinglesQuery(id)
+  const AllData = data?.data?.attributes;
+  console.log(AllData)
+
+
+  const [bitCreate] = useCreateBitMutation();
+  const handleBidSubmit = async () => {
+    const data = {
+      amount:bidAmount,
+      product:id
+    }
+    try {
+      const res = await bitCreate(data).unwrap();
+      console.log(res);
+      if(res?.code === 200){
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Bid submitted successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   // Set the page to render client-side only
   useEffect(() => {
@@ -49,6 +76,8 @@ const ProductPage = () => {
   if (!isClient) {
     return null; // You can also show a loading spinner here while waiting for the client-side render
   }
+
+  
 
   return (
     <div className="md:container mx-auto px-4 py-6">
@@ -199,11 +228,7 @@ const ProductPage = () => {
             </Button>
             <Button
               onClick={() => {
-                Swal.fire({
-                  title: "Thank You!",
-                  text: "Your bid has been successfully submitted",
-                  icon: "success",
-                });
+                handleBidSubmit();
                 setIsReviewModalOpen(false); // Close the review modal after submission
               }}
               className="w-1/3 bg-[#48B1DB] text-white"

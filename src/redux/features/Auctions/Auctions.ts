@@ -15,7 +15,15 @@ const Auctions = baseApi.injectEndpoints({
       }),
       providesTags: ["product"],
     }),
+    createBit: builder.mutation({
+      query: (data) => ({
+        url: `/bid/add`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
-export const { useFetchProductsQuery, useGetProductSinglesQuery } = Auctions;
+export const { useFetchProductsQuery, useGetProductSinglesQuery, useCreateBitMutation } = Auctions;
