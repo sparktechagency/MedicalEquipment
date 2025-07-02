@@ -8,9 +8,17 @@ const UpcomingAuctions = baseApi.injectEndpoints({
       }),
       providesTags: ["product"],
     }),
+    getTopPickedAll: builder.query({
+      query: () => ({
+        url: `/product/top_picked`,
+        method: "GET",
+      }),
+      providesTags: ["product"],
+    }),
   }),
 });
 
 export const {
-  useGetProductAllQuery
+  useGetProductAllQuery,
+  useGetTopPickedAllQuery,
 } = UpcomingAuctions;

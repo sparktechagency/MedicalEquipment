@@ -6,6 +6,7 @@ import Image from "next/image";
 import PaginationComponent from "@/components/UI/PaginationComponent"; // Import the Pagination component
 import Link from "next/link";
 import { AuctionItem } from "@/types/types";
+import { useGetCategoryAllQuery } from "@/redux/features/ProductManagement/ProductManagement";
 
 const Auctions = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,18 +23,11 @@ const Auctions = () => {
     setCurrentPage(page);
   };
 
-  const categories = [
-    { id: 1, name: "Diagnostic Equipment" },
-    { id: 2, name: "Imaging Devices" },
-    { id: 3, name: "Surgical Instruments" },
-    { id: 4, name: "Patient Monitoring" },
-    { id: 5, name: "Therapeutic Devices" },
-    { id: 6, name: "Laboratory Equipment" },
-    { id: 7, name: "Medical Consumables" },
-    { id: 8, name: "Rehabilitation Equipment" },
-    { id: 9, name: "Anesthesia Equipment" },
-    { id: 10, name: "Sterilization Equipment" },
-  ];
+  const {data: categoriesData} = useGetCategoryAllQuery({});
+  const categories = categoriesData?.data?.attributes
+
+
+
 
   const data = [
     {
@@ -270,24 +264,31 @@ const Auctions = () => {
           <p className="text-base ">All Categories</p>
 
           <ul className="my-4 bg-[#EEF9FE] p-5">
-            {categories.map((item, index) => (
-              <li
-                key={index}
-                className="py-2 cursor-pointer"
-                onClick={() => setSelectedCategory(item.name)}
-              >
-                <span
-                  className={`${
-                    selectedCategory === item.name
-                      ? "font-semibold text-[#48B1DB]"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {item.name}
-                </span>
-              </li>
-            ))}
-          </ul>
+  {categories && categories.length > 0 ? (
+    categories.map((item: { name: string }, index: number) => (
+      <li
+        key={index}
+        className="py-2 cursor-pointer"
+        onClick={() => {
+          setSelectedCategory(item.name); // Sets the selected category
+          closeDrawer(); // Closes the drawer
+        }}
+      >
+        <span
+          className={`${
+            selectedCategory === item.name
+              ? "font-semibold text-[#48B1DB]" // Selected category styling
+              : "text-gray-600" // Default unselected category styling
+          }`}
+        >
+          {item.name}
+        </span>
+      </li>
+    ))
+  ) : (
+    <li>No categories available</li> // Fallback if no categories are present
+  )}
+</ul>
         </aside>
 
         {/* Sidebar Drawer - Only on Mobile */}
@@ -309,28 +310,32 @@ const Auctions = () => {
               <h1 className="font-bold py-3">Collectible Products</h1>
               <p className="text-base">All Categories</p>
 
-              <ul className="my-4 bg-[#EEF9FE] px-2">
-                {categories.map((item, index) => (
-                  <li
-                    key={index}
-                    className="py-2 cursor-pointer"
-                    onClick={() => {
-                      setSelectedCategory(item.name);
-                      closeDrawer();
-                    }}
-                  >
-                    <span
-                      className={`${
-                        selectedCategory === item.name
-                          ? "font-semibold text-[#48B1DB]"
-                          : "text-gray-600"
-                      }`}
-                    >
-                      {item.name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <ul className="my-4 bg-[#EEF9FE] p-5">
+  {categories && categories.length > 0 ? (
+    categories.map((item: { name: string }, index: number) => (
+      <li
+        key={index}
+        className="py-2 cursor-pointer"
+        onClick={() => {
+          setSelectedCategory(item.name); // Sets the selected category
+          closeDrawer(); // Closes the drawer
+        }}
+      >
+        <span
+          className={`${
+            selectedCategory === item.name
+              ? "font-semibold text-[#48B1DB]" // Selected category styling
+              : "text-gray-600" // Default unselected category styling
+          }`}
+        >
+          {item.name}
+        </span>
+      </li>
+    ))
+  ) : (
+    <li>No categories available</li> // Fallback if no categories are present
+  )}
+</ul>
             </div>
             <div className="flex-1" onClick={closeDrawer}></div>
           </div>

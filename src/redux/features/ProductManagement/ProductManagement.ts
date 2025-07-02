@@ -1,6 +1,7 @@
 import { baseApi } from "@/redux/api/baseApi";
 
 
+
 const ProductManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createProduct: builder.mutation({
@@ -63,5 +64,5 @@ export const {
   useDeleteProductMutation,
   useCreateProductMutation,
   useGetBitAllQuery,
-  useGetCategoryAllQuery
+  useGetCategoryAllQuery,
 } = ProductManagementApi;

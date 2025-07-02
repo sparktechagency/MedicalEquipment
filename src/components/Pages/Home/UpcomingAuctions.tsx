@@ -77,7 +77,6 @@ const UpcomingAuctions = () => {
                         src={item.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${item.images[0]}` : ""}
                         alt={item.name || "Auction Item"}
                         className="w-full h-40 md:h-56  rounded-md p-1"
-                       
                       />
                       <div className="p-4">
                         <h3 className="font-semibold text-base md:text-lg truncate">
