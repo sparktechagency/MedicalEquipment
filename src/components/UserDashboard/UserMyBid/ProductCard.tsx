@@ -3,13 +3,30 @@ import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
 import { MdReport } from 'react-icons/md';
+import { usePaymentCreateMutation } from '@/redux/features/payment/payment';
 const  ProductCard =({ products }: { products: any }) =>{
-  const { title, description, price, images } = products?.product;
+  console.log(products._id);
+  const { title, description, price, images, } = products?.product;
+
   const { address,} = products?.product?.author;
   const bidTime = products?.createdAt;
-  console.log(bidTime);
   const productIsWinner = products?.isWinner ;
   const paymentStatus   = products?.paymentStatus;
+
+  const [Payment] = usePaymentCreateMutation();
+  const handlePaymentProduct = async(id:any) => {
+    try {
+     const res = await Payment(id).unwrap();
+     console.log(res);
+     if(res?.code === 200){
+       window.location.href = res?.data?.attributes?.redirect
+     }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
   return (
     <div className="w-full lg:w-[90%] lg:flex border border-blue-300 rounded-lg overflow-hidden mb-4 p-2">
@@ -43,7 +60,7 @@ const  ProductCard =({ products }: { products: any }) =>{
 
         
         {productIsWinner === true && paymentStatus === 'unpaid' && (
-          <button className="md:absolute md:bottom-4 md:right-4 mt-1 bg-[#48B1DB] text-white px-4 py-2 rounded-md">
+          <button onClick={() => handlePaymentProduct(products?._id)} className="md:absolute md:bottom-4 md:right-4 mt-1 bg-[#48B1DB] text-white px-4 py-2 rounded-md">
             Pay Now
           </button>
         )}

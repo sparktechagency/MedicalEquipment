@@ -17,13 +17,25 @@ export  interface MetaData {
   }
 
  export interface AuctionItem {
-    id: number;
+   _id: number;
+   title: string;
+   author: {
+     address: string;
+   };
+   price: string;
+   images: string;
+   date:Date;
+   Categories: string;
+   type: string;
+ }
+
+
+
+  export interface Category {
+    _id: string;
     name: string;
-    location: string;
-    price: string;
-    imageUrl: string;
-    timeRemaining: string;
-    bids: string;
-    Categories: string;
-    type: string;
+    isDeleted: boolean;
+    createdAt: string;
+    updatedAt: string;
+    images: string;
   }
