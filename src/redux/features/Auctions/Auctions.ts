@@ -8,7 +8,14 @@ const Auctions = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getProductSingles: builder.query({
+      query: (id) => ({
+        url: `/product/single/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["product"],
+    }),
   }),
 });
 
-export const { useFetchProductsQuery } = Auctions;
+export const { useFetchProductsQuery, useGetProductSinglesQuery } = Auctions;
