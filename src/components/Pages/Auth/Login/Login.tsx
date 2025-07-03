@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from "react"; // Ensure React is imported
 import Image from "next/image";
@@ -14,6 +15,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
 import { setUser } from "@/redux/features/auth/authSlice";
+import Swal from "sweetalert2";
 
 interface LoginFormValues {
   email: string;
@@ -37,8 +39,7 @@ const Login: React.FC = () => {
 
     try {
       const res = await loginUser(data).unwrap();
-      console.log(res);
-
+      console.log(res?.data?.data?.code);
       if (res?.data) {
         toast.success(`${res?.message}`);
         const { email, name, id, image, address, role, phone, totalIncome, currentBalance } = res?.data?.attributes?.user;
@@ -46,9 +47,17 @@ const Login: React.FC = () => {
         dispatch(setUser({ user: finalUserData, token: res?.data?.attributes?.tokens?.access?.token }));
         router?.push("/");
       }
-    } catch (error) {
-      message.error('An error occurred while logging in.');
-      console.error(error);
+    } catch (error: any) {
+      console.log(error?.data?.message);
+      if (error?.data?.message) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error?.data?.message ,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } 
     }
   };
 
