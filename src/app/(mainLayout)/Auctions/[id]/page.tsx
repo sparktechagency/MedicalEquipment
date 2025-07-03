@@ -16,10 +16,9 @@ const ProductPage = () => {
 
 
   const {id} = useParams();
-  console.log(id);
   const {data} = useGetProductSinglesQuery(id)
   const AllData = data?.data?.attributes;
-  console.log(AllData)
+
 
 
   const [bitCreate] = useCreateBitMutation();
@@ -30,7 +29,7 @@ const ProductPage = () => {
     }
     try {
       const res = await bitCreate(data).unwrap();
-      console.log(res);
+      
       if(res?.code === 200){
         Swal.fire({
           position: "center",
@@ -41,7 +40,20 @@ const ProductPage = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      console.error("Failed to submit bid:", error);
+      const err = error as { status?: number; data?: { message?: string } };
+      if (err?.status === 401) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err?.data?.message || "You are not authorized. Please login.",
+          showConfirmButton: true,
+          confirmButtonText: "Login",
+          willClose: () => {
+            window.location.href = '/login'; 
+          }
+        });
+      }
     }
   }
 
