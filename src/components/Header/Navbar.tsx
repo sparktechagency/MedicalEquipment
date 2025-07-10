@@ -30,15 +30,22 @@ const { data,  } = useGetUserQuery({});
   const userData = data?.attributes?.user;
   const [name , setName] = useState(null)
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  
 
   useEffect(() => {
     if (userData) {
-      setName(userData.name)
+      setName(userData.name);
+      
       setProfileImage(
-        userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` : null
+        userData.image && userData.image.startsWith('https') 
+          ? userData.image 
+          : userData.image 
+          ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` 
+          : null
       );
     }
   }, [userData]);
+  
 
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -176,7 +183,7 @@ const { data,  } = useGetUserQuery({});
                 />
                 <div className="hidden lg:block">
                   <p className="text-sm font-medium text-gray-900 capitalize">
-                    {name}
+                    {(name ?? "").slice(0, 10)}
                   </p>
                   <p className="text-xs text-gray-500 capitalize">
                     {user.role}

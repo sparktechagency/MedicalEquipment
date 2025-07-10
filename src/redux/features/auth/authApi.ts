@@ -49,10 +49,14 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     GoogleLogin: builder.mutation({
-      query: () => ({
-        url: "/auth/google",
-        method: "POST",
-      }),
+      query: (data) => {
+        // console.log("Google login data:", data);
+        return {
+          url: `/auth/google`,
+          method: "POST",
+          body: data,
+        };
+      },
     }),
   }),
 });
