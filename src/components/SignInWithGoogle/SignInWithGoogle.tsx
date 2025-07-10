@@ -7,6 +7,8 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 const SignInWithGoogle = () => {
   const handleLogin = (response: any) => {
     console.log(response);
+
+    console.log(`Google login successful:`, response);
     
   };
    
@@ -16,7 +18,7 @@ const SignInWithGoogle = () => {
 
 
   return (
-    <GoogleOAuthProvider clientId="26923651394-ofin3np9rm8j30nvek8l4r5dub4tie9c.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
       <div className="flex items-center justify-center mx-auto mt-5">
         {/* <div>Sign in with Google</div> */}
       <GoogleLogin
