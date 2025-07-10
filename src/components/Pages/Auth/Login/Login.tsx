@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Form, Checkbox, message } from "antd";
 import { useRouter } from "next/navigation";
 import InputComponent from "@/components/UI/InputComponent";
-import google from "@/assets/Authentication/google.png";
+// import google from "@/assets/Authentication/google.png";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 
@@ -16,6 +16,7 @@ import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
 import { setUser } from "@/redux/features/auth/authSlice";
 import Swal from "sweetalert2";
+import SignInWithGoogle from "@/components/SignInWithGoogle/SignInWithGoogle";
 
 interface LoginFormValues {
   email: string;
@@ -30,8 +31,6 @@ const Login: React.FC = () => {
   if (isLoading) {
     message.loading("Loading...");
   }
-
-
 
 
   const onFinish = async (data: LoginFormValues) => {
@@ -123,13 +122,14 @@ const Login: React.FC = () => {
                   <h1 className="md:text-xl">Or login with</h1>
                   <div className="border-black border md:w-[30%] w-[25%]"></div>
                 </div>
-                <Image
+                {/* <Image
                   className="mx-auto mt-3"
                   src={google}
                   width={50}
                   height={50}
                   alt="google"
-                />
+                /> */}
+                <SignInWithGoogle />
               </div>
             </div>
           </div>
