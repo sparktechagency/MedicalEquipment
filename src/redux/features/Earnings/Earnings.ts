@@ -9,7 +9,6 @@ const Earnings = baseApi.injectEndpoints({
         body: data,
       }),
     }),
-
     getAllEarnings: builder.query({
       query: () => ({
         url: "/payment/seller_earnings",

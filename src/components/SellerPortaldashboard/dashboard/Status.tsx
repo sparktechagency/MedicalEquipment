@@ -8,9 +8,9 @@ const Status = () => {
   const Alldata = [
     { title: "Total Product", value: data?.attributes?.totalProduct},
     { title: "Total Sold", value: data?.attributes?.totalSoldProduct },
-    { title: "Total Revenue", value: data?.attributes?.totalIncome },
+    { title: "Total Income", value: data?.attributes?.totalIncome },
     { title: "Active Product", value: data?.attributes?.activeProduct },
-    { title: "Withdrawal ", value: data?.attributes?.currentBalance },
+    { title: "Current Balance", value: data?.attributes?.currentBalance },
   ];
 
   return (

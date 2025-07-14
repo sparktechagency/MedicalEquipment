@@ -26,7 +26,7 @@ interface User {
 
 const Navbar = () => {
 
-const { data,  } = useGetUserQuery({});
+  const { data,  } = useGetUserQuery({});
   const userData = data?.attributes?.user;
   const [name , setName] = useState(null)
   const [profileImage, setProfileImage] = useState<string | null>(null);
