@@ -2,6 +2,14 @@ import { baseApi } from "@/redux/api/baseApi";
 
 const Earnings = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    balanceWidrowCreate: builder.mutation({
+      query: (data) => ({
+        url: "/payout/create",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     getAllEarnings: builder.query({
       query: () => ({
         url: "/payment/seller_earnings",
@@ -9,30 +17,13 @@ const Earnings = baseApi.injectEndpoints({
       }),
       providesTags: ["Earnings"],
     }),
-    updateEarnings: builder.mutation({
-      query: (data) => ({
-        url: "/info/all-reports",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Earnings"],
-    }),
-
-    getSingleEarnings: builder.query({
-      query: (id) => ({
-        url: `/payment/transaction/${id}`,
+    getPaymentHistory: builder.query({
+      query: () => ({
+        url: "/payout/self",
         method: "GET",
       }),
-    }),
-
-    deleteReport: builder.mutation({
-      query: (id) => ({
-        url: `/report/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Earnings"],
     }),
   }),
 });
 
-export const { useGetAllEarningsQuery } = Earnings;
+export const { useGetAllEarningsQuery, useGetPaymentHistoryQuery, useBalanceWidrowCreateMutation } = Earnings;

@@ -11,6 +11,7 @@ import { RiSettingsLine } from "react-icons/ri";
 import { FaSignOutAlt } from "react-icons/fa";
 import { LuPackageOpen } from "react-icons/lu";
 import { TiShoppingCart } from "react-icons/ti";
+import { FaCcMastercard } from "react-icons/fa";
 
 import Logo from "@/assets/logo/Logo.png";
 
@@ -83,6 +84,7 @@ const SidebarSellerPortal = () => {
     { href: "/productManagement", icon: LuPackageOpen, label: "Product" },
     { href: "/OrderListUser", icon: TiShoppingCart, label: "Order List" },
     { href: "/Earnings", icon: BiDollarCircle, label: "Earnings" },
+    { href: "/paymentHistory", icon: FaCcMastercard, label: "Payment History" },
     { href: "/Settings", icon: RiSettingsLine, label: "Settings" },
   ];
 
