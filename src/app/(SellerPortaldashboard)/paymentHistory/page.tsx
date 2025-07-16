@@ -96,7 +96,7 @@ const Page = () => {
             onClick={() => handleViewImage(record.image)} // Handle image view on click
             className="text-blue-500 hover:underline flex items-center "
           >
-            <FaEye size={28} />
+          { record.status === 'approve' ?   <FaEye size={24} />  : ''}
           </button>
         </div>
       ),
