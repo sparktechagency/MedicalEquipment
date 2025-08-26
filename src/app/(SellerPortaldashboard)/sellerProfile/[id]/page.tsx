@@ -20,7 +20,7 @@ const EditSellerProfile: React.FC = () => {
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(
-    user?.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}` : null
+    user?.image ? `${user.image}` : null
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 

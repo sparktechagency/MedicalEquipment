@@ -84,7 +84,7 @@ const ListOfAllProducts = () => {
               <Image
                 width={500}
                 height={500}
-                src={product.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${product.image}` : "/default-image.jpg"} // Fallback if no image exists
+                src={product.image ? `${product.image}` : "/default-image.jpg"} // Fallback if no image exists
                 alt="Product Image"
                 className="h-16 w-16 object-cover"
               />

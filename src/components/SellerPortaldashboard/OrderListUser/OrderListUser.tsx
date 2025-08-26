@@ -70,7 +70,7 @@ const OrderList: React.FC = () => {
             <Image
               src={
                 record.userImage
-                  ? `${process.env.NEXT_PUBLIC_BASE_URL}/${record.userImage}`
+                  ? `${record.userImage}`
                   : ""
               }
               alt={record.bidderName}

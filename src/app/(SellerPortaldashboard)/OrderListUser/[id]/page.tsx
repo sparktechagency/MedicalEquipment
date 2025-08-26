@@ -82,7 +82,7 @@ const OrdersDetails: React.FC = () => {
               <Image
                 src={
                   author?.image
-                    ? `${process.env.NEXT_PUBLIC_BASE_URL}/${author.image}`
+                    ? `${author.image}`
                     : ""
                 }
                 alt={author?.name || 'User'}

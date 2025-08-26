@@ -74,7 +74,7 @@ const UpcomingAuctions = () => {
                       <Image
                         width={300}
                         height={250}
-                        src={item.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${item.images[0]}` : ""}
+                        src={item.images ? `${item.images[0]}` : ""}
                         alt={item.name || "Auction Item"}
                         className="w-full h-40 md:h-56  rounded-md p-1"
                       />

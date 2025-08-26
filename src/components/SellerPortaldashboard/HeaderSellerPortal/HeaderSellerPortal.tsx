@@ -17,7 +17,7 @@ const HeaderSellerPortal = () => {
         setRole(userData.role)
         setName(userData.name)
         setProfileImage(
-          userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` : null
+          userData.image ? `${userData.image}` : null
         );
       }
     }, [userData]);

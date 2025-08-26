@@ -34,7 +34,7 @@ const  ProductCard =({ products }: { products: any }) =>{
         <Image
           width={300}
           height={300}
-          src={images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${images[0]}` : ''}
+          src={images ? `${images[0]}` : ''}
           className="w-full h-[240px] object-cover rounded-md"
           alt="Product Image"
         />

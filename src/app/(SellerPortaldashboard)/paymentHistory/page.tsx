@@ -151,7 +151,7 @@ const Page = () => {
               className="rounded-lg"
               width="100%"
               height="auto"
-              src={selectedImage ? `${process.env.NEXT_PUBLIC_BASE_URL}/${selectedImage}` : "data not found"} // Corrected src URL
+              src={selectedImage ? `${selectedImage}` : "data not found"} // Corrected src URL
               alt="Payment Screenshot"
               
             />

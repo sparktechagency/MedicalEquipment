@@ -34,7 +34,7 @@ const EditProducts = () => {
 
   useEffect(() => {
     if (productData?.images?.length) {
-      const urls = productData.images.map((img: string) => `${process.env.NEXT_PUBLIC_BASE_URL}/${img}`);
+      const urls = productData.images.map((img: string) => `${img}`);
       setProfileImages(urls);
       setExistingImageNames(productData.images);
     }

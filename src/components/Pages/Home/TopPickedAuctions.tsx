@@ -73,7 +73,7 @@ const TopPickedAuctions = () => {
                     height={250}
                     src={
                       item.images && item.images.length > 0
-                        ? `${process.env.NEXT_PUBLIC_BASE_URL}/${item.images[0]}`
+                        ? `${item.images[0]}`
                         : ""
                     }
                     alt={item.title}

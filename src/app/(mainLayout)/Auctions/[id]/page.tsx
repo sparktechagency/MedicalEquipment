@@ -100,7 +100,7 @@ const ProductPage = () => {
           <div className="w-full md:w-[30%] mb-4 md:mb-0">
             <Image 
               
-              src={AllData?.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${AllData?.images[0]}`
+              src={AllData?.images ? `${AllData?.images[0]}`
               : '/placeholder.png'
           }
               alt="Thumbnail Image 1"
@@ -110,7 +110,7 @@ const ProductPage = () => {
             />
             <Image 
               
-              src={AllData?.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${AllData?.images[1]}`
+              src={AllData?.images ? `${AllData?.images[1]}`
               : '/placeholder.png'
           }
               alt="Thumbnail Image 2"
@@ -120,7 +120,7 @@ const ProductPage = () => {
             />
             <Image 
               
-              src={AllData?.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${AllData?.images[2]}`
+              src={AllData?.images ? `${AllData?.images[2]}`
               : '/placeholder.png'
           }
               alt="Thumbnail Image 3"
@@ -133,7 +133,7 @@ const ProductPage = () => {
           {/* Main Image */}
           <div className="md:w-[70%px] md:h-full w-full">
             <Image
-              src={AllData?.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${AllData?.images[3]}`
+              src={AllData?.images ? `${AllData?.images[3]}`
               : '/placeholder.png'
           }
               alt="Main Product Image"

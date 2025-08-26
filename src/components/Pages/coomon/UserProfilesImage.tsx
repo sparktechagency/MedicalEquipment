@@ -16,7 +16,7 @@ const UserProfilesImage = () => {
         user.image && user.image.startsWith('https') 
           ? user.image 
           : user.image 
-          ? `${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}` 
+          ? `${user.image}` 
           : null
       );
     }

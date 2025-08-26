@@ -40,7 +40,7 @@ const Navbar = () => {
         userData.image && userData.image.startsWith('https') 
           ? userData.image 
           : userData.image 
-          ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` 
+          ? `${userData.image}` 
           : null
       );
     }

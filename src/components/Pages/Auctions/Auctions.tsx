@@ -203,7 +203,7 @@ const Auctions = () => {
                   <Image
                     width={300}
                     height={250}
-                    src={item?.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${item?.images[0]}`
+                    src={item?.images ? `${item?.images[0]}`
                         : '/placeholder.png'
                     }
                     alt={item.title}

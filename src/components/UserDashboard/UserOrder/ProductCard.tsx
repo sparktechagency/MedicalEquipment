@@ -15,7 +15,7 @@ const ProductCard = ({Order}: {Order: any}) => {
           className="w-full h-[240px] object-cover rounded-md"
           width={300}
           height={300}
-          src={Order?.product?.images ? `${process.env.NEXT_PUBLIC_BASE_URL}/${Order?.product?.images[0]}` : ''}
+          src={Order?.product?.images ? `${Order?.product?.images[0]}` : ''}
           alt="Product Image"
         />
       </div>
@@ -64,7 +64,7 @@ const ProductCard = ({Order}: {Order: any}) => {
                 <Image
                   width={100}
                   height={100} 
-                  src={Order?.author?.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${Order?.author?.image}` : ''} 
+                  src={Order?.author?.image ? `${Order?.author?.image}` : ''} 
                   alt="Bashar Islam" 
                   className="w-full h-full object-cover"
                 />
@@ -116,7 +116,7 @@ const ProductCard = ({Order}: {Order: any}) => {
                 <Image
                   width={100}
                   height={100} 
-                  src={Order?.product?.author?.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${Order?.product?.author?.image}` : ''} 
+                  src={Order?.product?.author?.image ? `${Order?.product?.author?.image}` : ''} 
                   alt="Hisham Islam" 
                   className="w-full h-full object-cover"
                 />
