@@ -5,7 +5,7 @@ import { RootState } from "../store";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://d7003.sobhoy.com/api/v1",
+    baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1`,
     prepareHeaders: (headers, { getState }) => {
       // Extract the token correctly by parsing the stringified token object
       const token = (getState() as RootState).auth.token?.replace(/['"]+/g, "");
@@ -25,7 +25,7 @@ export const baseApi = createApi({
     "order",
     "Earnings",
     "User",
-    "settings"
+    "settings",
   ],
   endpoints: () => ({}),
 });
